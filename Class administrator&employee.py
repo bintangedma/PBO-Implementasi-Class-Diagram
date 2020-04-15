@@ -40,27 +40,31 @@ class Administrator :
     
 class Employee(User) :
     #instance
-    def __init__(self, nama_emp, __id_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
+    def __init__(self, nama_emp, id_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
         self.nama_emp = nama_emp
         self.__id_emp = id_emp
         self.TL_emp = TL_emp
         self.jabatan_emp = jabatan_emp
         self.JK_emp = JK_emp
         self.alamat_emp = alamat_emp
+        #self.info = "name {} : \n\t id_emp: {}\n\t jabatan: {}".format(self.nama_emp, self.__id_emp, self.jabatan_emp)
 
     def getNama(self):
         return self.nama_emp
     def setNama(self, new) :
         self.nama_emp = new
     @property
+    def info(self):
+        return "name {} : \n\t id_emp: {}\n\t jabatan: {}".format(self.nama_emp, self.__id_emp, self.jabatan_emp)
+    @property
     def id_emp(self):
         pass
     @id_emp.getter
     def id_emp(self):
-        return self.id_emp
+        return self.__id_emp
     @id_emp.setter
     def id_emp(self, new):
-        self.id_emp = new
+        self.__id_emp = new
 
     def getTL(self):
         return self.TL_emp
@@ -82,6 +86,8 @@ class Employee(User) :
     def setAlamat(self, new):
         self.alamat_emp = new
 
-johnny = Employee("johnny", "EM0001", "1-feb-1995", "karyawan", "laki-laki", "Jalan Cempaka putih" )
+#test
+johnny = Employee("Johnny Bill", "EM0001", "1-feb-1995", "karyawan", "laki-laki", "Jalan Cempaka putih" )
 
-print(employee.nama_emp)
+print(johnny.nama_emp)
+print(johnny.info)
