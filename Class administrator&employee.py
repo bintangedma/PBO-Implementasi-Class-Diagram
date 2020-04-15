@@ -9,7 +9,7 @@ class User :
 
 class Administrator : 
     #instance
-    def __init__(self, __nama_admin, __kode_admin):
+    def __init__(self, nama_admin, kode_admin):
         self.__nama_admin = nama_admin
         self.__kode_admin = kode_admin
 
@@ -91,3 +91,4 @@ johnny = Employee("Johnny Bill", "EM0001", "1-feb-1995", "karyawan", "laki-laki"
 
 print(johnny.nama_emp)
 print(johnny.info)
+print(johnny.__dict__)
