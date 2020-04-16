@@ -92,3 +92,6 @@ johnny = Employee("Johnny Bill", "EM0001", "1-feb-1995", "karyawan", "laki-laki"
 print(johnny.nama_emp)
 print(johnny.info)
 print(johnny.__dict__)
+
+
+print(Employee.getAlamat(johnny))
