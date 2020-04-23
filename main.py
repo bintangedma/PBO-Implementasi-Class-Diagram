@@ -4,9 +4,45 @@ class User :
         self.username = username
         self.password = password
 
-    def verifikasi(self):
-        pass
+    def GetUsername(self):
+        return username
+    def SetUsername(self, new):
+        self.username = new
 
+    def SetPassword(self,new):
+        self.password = new
+
+    def askUser():
+        username = input("username : ")
+        password = input("password : ")
+        verifikasi(username, password)
+
+    def verifikasi(use, pwd):
+        if use == ("username") and pwd == ("password") :
+            login(use)
+        else:
+            print ("Username dan/atau password yang anda masukkan salah")
+            askUser()
+
+    def login(use):
+        print("Anda telah berhasil masuk!")
+        print("Selamat datang "+use)
+        askCom()
+
+    def askCom():
+        command = raw_input("Apa yang ingin anda lakukan? ")
+        if command == "Keluar" or command == "Log off":
+            username = ""
+            password = ""
+            print("you have logged off")
+            askUser()
+        else:
+            print("Unknown command")
+            askCom()
+
+
+
+        
 class Administrator : 
     #instance
     def __init__(self, nama_admin, kode_admin):
