@@ -12,33 +12,33 @@ class User :
     def SetPassword(self,new):
         self.password = new
 
-    def askUser():
-        username = input("username : ")
-        password = input("password : ")
-        verifikasi(username, password)
-
-    def verifikasi(use, pwd):
-        if use == ("username") and pwd == ("password") :
-            login(use)
+    def verifikasi(self, use, pwd):
+        if use == (self.username) and pwd == (self.password) :
+            self.login()
         else:
             print ("Username dan/atau password yang anda masukkan salah")
-            askUser()
+            self.askUser()
 
-    def login(use):
+    def askUser(self):
+        username = input("username : ")
+        password = input("password : ")
+        self.verifikasi(username, password)
+
+    def login(self):
         print("Anda telah berhasil masuk!")
-        print("Selamat datang "+use)
-        askCom()
+        print("Selamat datang "+self.username)
+        self.askCom()
 
-    def askCom():
-        command = raw_input("Apa yang ingin anda lakukan? ")
+    def askCom(self):
+        command = input("Apa yang ingin anda lakukan? ")
         if command == "Keluar" or command == "Log off":
             username = ""
             password = ""
             print("you have logged off")
-            askUser()
+            self.askUser()
         else:
             print("Unknown command")
-            askCom()
+            self.askCom()
 
 
 
@@ -49,11 +49,12 @@ class Administrator :
         self.__nama_admin = nama_admin
         self.__kode_admin = kode_admin
 
-    def add_visitor(self, nama, alamat, no_KTP, tanggal_lahir):
-        pass
+    def add_visitor():
+        Visitor()
     
-    def del_visitor(self, __id_visitor) :
-        pass
+    def del_visitor(self, obj) :
+        hapus = input("masukkan id_visitor")
+        del Visitor.id_visitor
 
     def upd_visitor(self, nama, alamat, no_KTP, tanggal_lahir):
         pass

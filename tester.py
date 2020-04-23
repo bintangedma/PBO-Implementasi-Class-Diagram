@@ -7,5 +7,5 @@ import main
 #print(terry.nama)
 
 #test login
-#bintang = main.User("bintang", "bintang")
-#main.User.askUser()
+bintang = main.User("bintang", "bintang")
+bintang.askUser()
