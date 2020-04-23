@@ -9,9 +9,14 @@ class Visitor:
     def check_in(self):
         self.nama
         self.no_KTP
+        self.__id_visitor
+    check_in = Id_visitor(check_in)
+    
     def check_out(self):
         self.__id_visitor
-    def book(self):
+    check_out = Id_visitor(check_out)
+    
+    def booking(self):
         self.room_code
         self.no_KTP
             
