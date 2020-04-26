@@ -1,9 +1,11 @@
+import time
+
 class User : 
     #instance
     def __init__(self, username, password):
         self.username = username
         self.password = password
-
+    #method
     def GetUsername(self):
         return username
     def SetUsername(self, new):
@@ -48,25 +50,68 @@ class Administrator :
     def __init__(self, nama_admin, kode_admin):
         self.__nama_admin = nama_admin
         self.__kode_admin = kode_admin
-
-    def add_visitor():
-        Visitor()
+        self.list_visitor = []
+        self.list_employee = []
+    #method
+    def add_visitor(self):
+         nama = input("masukkan nama : ")
+         id_visitor = input("masukkan id_visitor : ")
+         alamat = input("masukkan alamat : ")
+         no_KTP = input("masukkan no_KTP : ")
+         tanggal_lahir = input("masukkan tanggal_lahir : ")
+         self.list_visitor.append(Visitor(nama, id_visitor, alamat, no_KTP, tanggal_lahir))
     
-    def del_visitor(self, obj) :
-        hapus = input("masukkan id_visitor")
-        del Visitor.id_visitor
+    def del_visitor(self) :
+        hapus = input("masukkan id_visitor : ")
+        for i in self.list_visitor:
+            if hapus == i.id_visitor:
+                self.list_visitor.remove(i)
+            else :
+                print("id yang anda masukkan tidak ada!")
+                self.del_visitor()
 
-    def upd_visitor(self, nama, alamat, no_KTP, tanggal_lahir):
-        pass
+    def upd_visitor(self):
+        ganti = input("masukkan id_visitor : ")
+        for i in self.list_visitor:
+            if ganti == i.id_visitor:
+                i.setNama()
+                i.setAlamat()
+                i.setNo_KTP()
+                i.setTgl_lahir()
+            else :
+                print("id tersebut tidak ada di database!")
+                self.upd_visitor()
 
-    def add_employee(self, nama_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
-        pass
+    def add_employee(self):
+        nama_emp = input("masukkan nama : ")
+        id_emp = input("masukkan id : ")
+        TL_emp = input("masukkan tanggal lahir : ")
+        jabatan_emp = input("masukkan jabatan karyawan : ")
+        JK_emp = input("masukkan jenis kelamin : ")
+        alamat_emp = input("masukkan alamat : ")
+        self.list_employee.append(Employee(nama_emp, id_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp))
     
-    def del_employee(self, __id_emp) :
-        pass
+    def del_employee(self) :
+        hapus = input("masukkan id_employee : ")
+        for i in self.list_employee:
+            if hapus == i.id_emp:
+                self.list_employee.remove(i)
+            else :
+                print("id yang anda masukkan tidak ada!")
+                self.del_employee()
 
-    def upd_employee(self, nama_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
-        pass
+    def upd_employee(self):
+        ganti = input("masukkan id_employee : ")
+        for i in self.list_employee:
+            if ganti == i.id_emp:
+                i.setNama()
+                i.setTL()
+                i.setJabatan()
+                i.setJK()
+                i.setAlamat()
+            else :
+                print("id tersebut tidak ada di database!")
+                self.upd_employee()
 
     def search_room(room_number, room_code):
         pass
@@ -75,7 +120,7 @@ class Administrator :
         pass
 
     
-class Employee(User) :
+class Employee() :
     #instance
     def __init__(self, nama_emp, id_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
         self.nama_emp = nama_emp
@@ -85,10 +130,11 @@ class Employee(User) :
         self.JK_emp = JK_emp
         self.alamat_emp = alamat_emp
         #self.info = "name {} : \n\t id_emp: {}\n\t jabatan: {}".format(self.nama_emp, self.__id_emp, self.jabatan_emp)
-
+    #method
     def getNama(self):
         return self.nama_emp
-    def setNama(self, new) :
+    def setNama(self) :
+        new = input("masukkan nama baru : ")
         self.nama_emp = new
     @property
     def info(self):
@@ -100,46 +146,52 @@ class Employee(User) :
     def id_emp(self):
         return self.__id_emp
     @id_emp.setter
-    def id_emp(self, new):
+    def id_emp(self):
+        new = input("masukkan id baru : ")
         self.__id_emp = new
 
     def getTL(self):
         return self.TL_emp
-    def setTL(self,new):
+    def setTL(self):
+        new = input("masukkan tanggal lahir baru : ")
         self.TL_emp = new
 
     def getJabatan(self):
         return self.jabatan_emp
-    def setJabatan(self, new):
+    def setJabatan(self):
+        new = input("masukkan jabatan baru : ")
         self.jabatan_emp = new
 
     def getJK(self):
         return self.JK_emp
-    def setJK(self,new):
+    def setJK(self):
+        new = input("masukkan jenis kelamin baru : ")
         self.setJK = new
     
     def getAlamat(self):
         return self.alamat_emp
-    def setAlamat(self, new):
+    def setAlamat(self):
+        new = input("masukkan alamat baru : ")
         self.alamat_emp = new
 
 class harga_room:
-  def __init__(self, room_number, room_code, harga, tanggal):
-    self.room_number = room_number
-    self.room_code = room_code
-    self.harga = harga
-    self.tanggal = tanggal
-    
-  def getHarga(self):
-    return self.harga
-    
-  def setHarga(self, baru):
-    self.harga = baru
+    def __init__(self, room_number, room_code, harga):
+        self.room_number = room_number
+        self.room_code = room_code
+        self.harga = harga
+        self.tanggal = tanggal
+        
+    def getHarga(self):
+        return self.harga
+        
+    def setHarga(self):
+        baru = input("masukkan harga baru : ")
+        self.harga = baru
       
-class receptionist(Employee):
-  def __init__(self,id_emp, time):
-      employee.__init__(self, id_emp)
-      self.time = time
+class Receptionist(Employee):
+  def __init__(self):
+      super().__init__(nama_emp, id_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp)
+      self.time = time.localtime(time.time())
     
   def book(self):
     pass
@@ -150,14 +202,13 @@ class receptionist(Employee):
     
   def perpanjang_book(self):
     self.room_code = room_code
-    self.no_KTP = no_KTP
     
-class room:
+class Room:
   def __init__(self, room_number, room_code):
       self.room_number = room_number
       self.room_code = room_code
   
-  def search_room(room_number, room_code):
+  def search_room(self, room_number, room_code):
       return room_number
       return room_code
     
@@ -175,36 +226,32 @@ class room:
   def setRoom_code(self, baru):
     self.room_code = baru
 
-class user:
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+class Marketing_crew(Employee):
+    def __init__(self):
+        super().__init__(nama_emp, id_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp)
 
-    def verifikasi(self):
-        pass
-
-class marketing_crew(Employee):
-    def __init__(self, id_emp):
-        self.id_emp = id_emp
     def laporan(self):
-        self.laporan = laporan
-    def upd_harga(self, baru):
+        pass
+    
+    def upd_harga(self):
+        baru = input("masukkan harga baru : ")
         self.harga = baru
 
-class cashier (Employee):
-    def __init__(self, id_emp, time, transaksi):
+class Cashier(Employee):
+    def __init__(self):
+        super().__init__(nama_emp, id_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp)
         self.id_emp = id_emp
         self.time = time
-        self.transaksi = transaksi
+        self.transaksi = []
+
     def receipt(self):
-        self.receipt = receipt
-    def getTransaksi(self):
-        return self.transaksi
-    def setTransaksi(self, baru):
-        self.transaksi = baru
+        print("receipt")
+        print(self.transaksi)
+
 
 class login:
-    pass
+    def __init__(self, time):
+        self.time = time
 
 class Visitor:
     def __init__(self, nama, id_visitor, alamat, no_KTP, tanggal_lahir):
@@ -222,11 +269,20 @@ class Visitor:
     def book(self):
         self.room_code
         self.no_KTP
-            
+
+    @property
+    def id_visitor(self):
+        pass
+    @id_visitor.getter
+    def id_visitor(self):
+        return self.__id_visitor
+    @id_visitor.setter
+    def id_visitor(self, new):
+        new = input("masukkan id baru : ")
+        self.__id_visitor = new
+
     def getNama(self):
         return self.nama
-    def getId_visitor(self):
-        return self.__id_visitor
     def getAlamat(self):
         return self.alamat
     def getNo_KTP(self):
@@ -234,15 +290,17 @@ class Visitor:
     def getTgl_lahir(self):
         return self.tanggal_lahir
 
-    def setNama(self, baru):
+    def setNama(self):
+        baru = input("masukkan nama baru : ")
         self.nama = baru
-    def setId_visitor(self, baru):
-        self.__id_visitor = baru
-    def setAlamat(self, baru):
+    def setAlamat(self):
+        baru = input("masukkan alamat baru : ")
         self.alamat = baru
-    def setNo_KTP(self, baru):
+    def setNo_KTP(self):
+        baru = input("masukkan nomor KTP baru : ")
         self.no_KTP = baru
-    def setTgl_lahir(self, baru):
+    def setTgl_lahir(self):
+        baru = input("masukkan tanggal lahir baru : ")
         self.tanggal_lahir = baru
 
 
