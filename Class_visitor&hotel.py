@@ -1,3 +1,6 @@
+from pymysql import *
+import datetime
+
 class Visitor:
     def __init__(self, nama, id_visitor, alamat, no_KTP, tanggal_lahir):
         self.nama = nama
