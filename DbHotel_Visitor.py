@@ -28,3 +28,6 @@ class DbHotel_Visitor:
 
     def __del__(self):
         self.conn.close()
+
+DbHotel_Visitor.insert("Terrijaki", "EMP001", "9th Avenue", "200000752136", "01020304")
+DbHotel_Visitor.fetch()
