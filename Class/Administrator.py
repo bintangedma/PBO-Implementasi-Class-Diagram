@@ -1,6 +1,6 @@
 import Visitor
 import Employee
-
+from db.base import Base, sessionFactory
 class Administrator : 
     #instance
     def __init__(self, nama_admin, kode_admin):

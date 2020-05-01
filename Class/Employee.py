@@ -1,3 +1,6 @@
+from db.base import Base, sessionFactory
+#from db.orm.EmployeeORM import EmployeeORM
+
 class Employee :
     #Class variable
     jumlahEmp = 0;
