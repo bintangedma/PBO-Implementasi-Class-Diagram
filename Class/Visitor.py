@@ -1,3 +1,4 @@
+import Room
 class Visitor:
     jumlahVis = 0;
     def __init__(self, nama, alamat, no_KTP, tanggal_lahir):
@@ -9,13 +10,13 @@ class Visitor:
         Visitor.jumlahVis += 1
 
     def check_in(self):
-        self.nama
-        self.no_KTP
+        pass
+    
     def check_out(self):
-        self.__id_visitor
+        pass
+
     def book(self):
-        self.room_code
-        self.no_KTP
+        pass
 
     @property
     def id_visitor(self):
@@ -51,4 +52,5 @@ class Visitor:
         self.tanggal_lahir = baru
 
 #bintang = Visitor("bintang", "asdas", "10101", "91273")
+#bintang.check_in()
 #print(bintang.__dict__)

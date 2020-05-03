@@ -1,6 +1,8 @@
 import Visitor
 import Employee
-from db.base import Base, sessionFactory
+import Room
+#from db.base import Base, sessionFactory
+
 class Administrator : 
     #instance
     def __init__(self, nama_admin, kode_admin):
@@ -8,6 +10,7 @@ class Administrator :
         self.__kode_admin = kode_admin
         self.list_visitor = []
         self.list_employee = []
+        self.room_list = []
     #method
     def add_visitor(self):
          nama = input("masukkan nama : ")
@@ -68,11 +71,30 @@ class Administrator :
                 print("id tersebut tidak ada di database!")
                 self.upd_employee()
 
-    def search_room(self):
-        pass
+    def book(self):
+        room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+        room_number = input("Masukkan nomor kamar : ")
+        self.room_list.append(Room.Room(room_number, room_code))
 
-    def set_room_status(self):
-        pass
+    def search_room(self):
+        kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+        cari = input("Masukkan nomor kamar : ")
+        id = kode+cari
+        for i in self.room_list : 
+            if id == i.id_room:
+                print("Ruangan ini telah dibooking")
+                ask = input("apakah anda ingin mencari ruangan lagi?(Y/N) : ")
+                if ask == "Y":
+                    self.search_room()
+                else:
+                    return
+            else :
+                print("Ruangan ini tersedia")
+                ask = input("apakah anda ingin mencari ruangan lagi?(Y/N) : ")
+                if ask == "Y":
+                    self.search_room()
+                else:
+                    return
 
 #bintang = Administrator("bintang", "bintang")
 #bintang.add_employee()
@@ -81,3 +103,6 @@ class Administrator :
 #print(bintang.list_employee[0].__dict__)
 #bintang.del_employee()
 #print(bintang.list_employee[0].__dict__)
+#bintang.book()
+#print(bintang.room_list[0].__dict__)
+#bintang.search_room()

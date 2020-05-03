@@ -1,6 +1,6 @@
-from db.base import Base, sessionFactory
+#from db.base import Base, sessionFactory
 #from db.orm.EmployeeORM import EmployeeORM
-
+import Room
 class Employee :
     #Class variable
     jumlahEmp = 0;
@@ -63,17 +63,80 @@ class Receptionist(Employee):
     jumlahRec = 0
     def __init__(self, nama_emp, TL_emp, JK_emp, alamat_emp):
         super().__init__(nama_emp, TL_emp, "Receptionist", JK_emp, alamat_emp)
+        self.room_list = []
         Receptionist.jumlahRec += 1
 
     def book(self):
+        room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+        room_number = input("Masukkan nomor kamar : ")
+        #id = room_code+room_number
+        self.room_list.append(Room.Room(room_number, room_code))
+        #for i in self.room_list:
+        #    if id not in i.id_room:
+        #        self.room_list.append(Room.Room(room_number, room_code))
+        #    else : 
+        #        print("room ini telah dibooking! coba cari yang lain")
+        #        ask = input("ingin cari kamar lain ?(Y/N) : ")
+        #        if ask =="Y":
+        #            self.book()
+        #        else:
+        #            return
+        
+    def search_room(self):
+        kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+        cari = input("Masukkan nomor kamar : ")
+        id = kode+cari
+        for i in self.room_list : 
+            if id == i.id_room:
+                print("Ruangan ini telah dibooking")
+                ask = input("apakah anda ingin mencari ruangan lagi?(Y/N) : ")
+                if ask == "Y":
+                    self.search_room()
+                else:
+                    return
+            else :
+                print("Ruangan ini tersedia")
+                ask = input("apakah anda ingin mencari ruangan lagi?(Y/N) : ")
+                if ask == "Y":
+                    self.search_room()
+                else:
+                    return
+    
+    def checkOut(self):
+        kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+        cari = input("Masukkan nomor kamar : ")
+        id = kode+cari
+        for i in self.room_list:
+            if id == i.id_room:
+                self.room_list.remove(i)
+                print("Terima kasih telah berkunjung")
+            else: 
+                print("data tidak ditemukan")
+                ask = input("apakah anda ingin mengulanginya lagi?(Y/N) : ")
+                if ask == "Y":
+                    self.checkOut()
+                else:
+                    return
+
+    def getRoom_number(self):
+        return self.room_number
+    def getRoom_code(self):
+        return self.room_code
+        
+    def setRoom_number(self):
+        baru = input("masukkan nomor ruangan baru : ")
+        self.room_number = baru
+    def setRoom_code(self):
+        baru = input("masukkan kode ruangan baru : ")
+        self.room_code = baru
+
+    def reservation(self):
         pass
         
-    def reservation(self):
-        self.room_number = room_number
-        self.room_code = room_code
-        
     def perpanjang_book(self):
-        self.room_code = room_code
+        room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+        room_number = input("Masukkan nomor kamar : ")
+        self.room_list.append(Room.Room(room_number, room_code))
 
 class Marketing_crew(Employee):
     jumlahMC = 0
@@ -103,3 +166,12 @@ class Cashier(Employee):
 
 #johnny = Employee("Johnny Walkerine", "19283", "Supervisor", "male", "Cluster")
 #print(johnny.__dict__)
+
+#rec1 = Receptionist("bintang", "california", "BOY", "NYC")
+#print(rec1.__dict__)
+#rec1.book()
+#print(rec1.room_list[0].__dict__)
+#rec1.checkOut()
+#print(rec1.room_list[0].__dict__)
+#rec1.search_room()
+#print(rec1.room_list)
