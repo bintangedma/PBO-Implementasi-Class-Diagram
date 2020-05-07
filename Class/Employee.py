@@ -64,13 +64,45 @@ class Receptionist(Employee):
     def __init__(self, nama_emp, TL_emp, JK_emp, alamat_emp):
         super().__init__(nama_emp, TL_emp, "Receptionist", JK_emp, alamat_emp)
         self.room_list = []
+        self.daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
+        self.tagihan = []
         Receptionist.jumlahRec += 1
+
+    def menu(self):
+        menu = input("Selamat datang, Apa yang ingin anda lakukan? \n1. Booking\n2. Cari Ruangan \n3. Check Out\n ===[>")
+        if menu == "1" or menu == "Booking" or menu == "booking":
+            self.book()
+        elif menu == "2" or menu == "cari" or menu == "Cari":
+            self.search_room()
+        elif menu == "3" or menu == "checkout" or menu == "out":
+            self.checkOut()
+        else : 
+            print("mohon masukkan kata kunci yang benar!")
+            self.menu()
 
     def book(self):
         room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
         room_number = input("Masukkan nomor kamar : ")
+        if room_code == "N":
+            harga = self.daftar_harga[0][1]
+            self.tagihan.append(harga)
+            self.room_list.append(Room.Room(room_number, room_code))
+            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
+        elif room_code == "VIP":
+            harga = self.daftar_harga[1][1]
+            self.tagihan.append(harga)
+            self.room_list.append(Room.Room(room_number, room_code))
+            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
+        elif room_code == "VVIP":
+            harga = self.daftar_harga[2][1]
+            self.tagihan.append(harga)
+            self.room_list.append(Room.Room(room_number, room_code))
+            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
+        else:
+            print("masukkan tipe ruangan dengan benar!")
+            self.book()
         #id = room_code+room_number
-        self.room_list.append(Room.Room(room_number, room_code))
+        #self.room_list.append(Room.Room(room_number, room_code))
         #for i in self.room_list:
         #    if id not in i.id_room:
         #        self.room_list.append(Room.Room(room_number, room_code))
@@ -167,11 +199,11 @@ class Cashier(Employee):
 #johnny = Employee("Johnny Walkerine", "19283", "Supervisor", "male", "Cluster")
 #print(johnny.__dict__)
 
-#rec1 = Receptionist("bintang", "california", "BOY", "NYC")
+rec1 = Receptionist("bintang", "california", "BOY", "NYC")
 #print(rec1.__dict__)
-#rec1.book()
-#print(rec1.room_list[0].__dict__)
+rec1.menu()
+print(rec1.room_list[0].__dict__)
 #rec1.checkOut()
-#print(rec1.room_list[0].__dict__)
+print(rec1.room_list[0].__dict__)
 #rec1.search_room()
 #print(rec1.room_list)
