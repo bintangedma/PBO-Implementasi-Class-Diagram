@@ -48,18 +48,25 @@ class Room:
                     self.search_room()
                 else:
                     return
+                    
     def getHarga(self):
-        type = input("Masukkan tipe ruangan : ")
-        if type == "N" or type == "Normal":
+        go = input("=====Daftar harga======\nApakah anda ingin melihat semua harga atau satu per satu?\n1. Tampilkan semua\n2. Tampilkan satu per satu\n(1/2)>")
+        if go == "2":    
+            tipe = input("Masukkan tipe ruangan : ")
+            if tipe == "N" or type == "Normal":
+                print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[0][1], self.daftar_harga[0][0]))
+            elif tipe == "VIP":
+                print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[1][1], self.daftar_harga[1][0]))
+            elif tipe == "VVIP":
+                print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[2][1], self.daftar_harga[2][0]))
+            else: 
+                print("itu bukan tipe ruangan, masukkan tipe ruangan yang benar!")
+                self.getHarga()
+        elif go == "1":
             print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[0][1], self.daftar_harga[0][0]))
-        elif type == "VIP":
             print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[1][1], self.daftar_harga[1][0]))
-        elif type == "VVIP":
             print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[2][1], self.daftar_harga[2][0]))
-        else: 
-            print("itu bukan tipe ruangan")
-            self.getHarga()
-        
+
     def getRoom_number(self):
         return self.room_number
     def getRoom_code(self):
@@ -97,7 +104,7 @@ class Harga_room:
 #r1 = Room(10, 10)
 #r1.book()
 #print(r1.id_room)
-#r2 = Harga_room("bintang", "bintang")
+#r2 = Room("bintang", "bintang")
 #r2.getHarga()
 #r1.book()
 #print(r1.room_list[0].__dict__)
