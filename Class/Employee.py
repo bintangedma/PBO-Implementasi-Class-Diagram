@@ -255,14 +255,17 @@ class Cashier(Employee):
 
 
     def receipt(self):
-        print("receipt")
-        print(self.transaksi)
+        KTP = input("masukkan nomor KTP anda : ")
+        for i in Visitor.Visitor.list_visitor : 
+            if KTP == i.no_KTP :
+                print("========receipt=========")
+                print("Total yang harus dibayar : {}".format(i.tagihan[0]))
 
 
 #johnny = Employee("Johnny Walkerine", "19283", "Supervisor", "male", "Cluster")
 #print(johnny.__dict__)
-m1 = Marketing_crew("bintang", "California", "Man", "NYC")
-m1.getHarga()
+#m1 = Marketing_crew("bintang", "California", "Man", "NYC")
+#m1.getHarga()
 #print(Receptionist.daftar_harga)
 #rec1 = Receptionist("bintang", "california", "BOY", "NYC")
 #print(rec1.__dict__)

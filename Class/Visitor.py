@@ -50,8 +50,9 @@ class Visitor:
             self.book()
         
     
-    def check_out(self):
-        pass
+    def checkOut(self):
+        a = sum(self.tagihan)
+        print("Biaya sewa kamar : {}\nTotal : {}".format(self.tagihan[0], a))
 
     @property
     def id_visitor(self):
@@ -90,5 +91,6 @@ class Visitor:
 #print(Visitor.list_visitor[0].__dict__)
 #print(Visitor.revenue)
 #bintang.book()
+#bintang.checkOut()
 #print(Visitor.revenue)
 #print(bintang.__dict__)

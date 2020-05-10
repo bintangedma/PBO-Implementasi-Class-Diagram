@@ -167,7 +167,8 @@ class Administrator :
 #bintang.find_visitor()
 #a = Visitor.Visitor.list_visitor[0].__dict__
 #print(a)
-bintang = Visitor.Visitor("bintang", "asdas", "10101", "91273")
-print(Visitor.Visitor.list_visitor[0].__dict__)
-rec1 = Employee.Receptionist("bintang", "california", "BOY", "NYC")
-rec1.book()
+#bintang = Visitor.Visitor("bintang", "asdas", "10101", "91273")
+#print(Visitor.Visitor.list_visitor[0].__dict__)
+#bintang.book()
+#cas1 = Employee.Cashier("bintang", "california", "BOY", "NYC")
+#cas1.receipt()
