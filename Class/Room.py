@@ -1,33 +1,12 @@
+
 class Room:
+    room_list = []
     def __init__(self, room_number, room_code):
         self.room_number = str(room_number)
         self.room_code = str(room_code)
         self.id_room = self.room_code+self.room_number
-        self.room_list = []
         self.daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
         self.tagihan = []
-
-    def book(self):
-        room_code = input("Masukkan tipe kamar(N/VIP/VVIP) : ")
-        room_number = input("Masukkan nomor kamar : ")
-        if room_code == "N":
-            harga = self.daftar_harga[0][1]
-            self.tagihan.append(harga)
-            self.room_list.append(Room(room_number, room_code))
-            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
-        elif room_code == "VIP":
-            harga = self.daftar_harga[1][1]
-            self.tagihan.append(harga)
-            self.room_list.append(Room(room_number, room_code))
-            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
-        elif room_code == "VVIP":
-            harga = self.daftar_harga[2][1]
-            self.tagihan.append(harga)
-            self.room_list.append(Room(room_number, room_code))
-            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
-        else:
-            print("masukkan tipe ruangan dengan benar! ikuti contoh")
-            self.book()
 
     def search_room(self):
         kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
@@ -83,7 +62,6 @@ class Harga_room:
     def __init__(self, room_code, harga):
         self.room_code = room_code
         self.harga = harga
-        self.daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
         
     def getHarga(self):
         type = input("Masukkan tipe ruangan : ")
@@ -98,11 +76,22 @@ class Harga_room:
             self.getHarga()
         
     def setHarga(self):
-        baru = input("masukkan harga baru : ")
-        self.harga = baru
-
-#r1 = Room(10, 10)
-#r1.book()
+        baru = int(input("masukkan harga baru : "))
+        untuk = input("harga tipe ruangan ini akan diganti per malamnya(N/VIP/VVIP) : ")
+        if untuk == "N":
+            Employee.Receptionist.daftar_harga[0][1] = baru
+        elif untuk == "VIP":
+            Employee.Receptionist.daftar_harga[1][1] = baru
+        elif untuk == "VVIP":
+            Employee.Receptionist.daftar_harga[2][1] = baru
+        #for i in Employee.Receptionist.daftar_harga : 
+         #   for a in i : 
+          #      if untuk == "N":
+                    
+        
+#print(Employee.Receptionist.daftar_harga.__dict__)
+#r1 = Harga_room(10, 10)
+#r1.setHarga()
 #print(r1.id_room)
 #r2 = Room("bintang", "bintang")
 #r2.getHarga()

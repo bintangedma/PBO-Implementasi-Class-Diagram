@@ -1,6 +1,8 @@
 import Room
 class Visitor:
+    list_visitor = []
     jumlahVis = 0;
+    revenue = 0
     def __init__(self, nama, alamat, no_KTP, tanggal_lahir):
         self.nama = nama
         self.__id_visitor = "VIS"+str(Visitor.jumlahVis+1)+no_KTP
@@ -9,26 +11,40 @@ class Visitor:
         self.tanggal_lahir = tanggal_lahir
         self.tagihan = []
         self.daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
+        Visitor.list_visitor.append(self)
         Visitor.jumlahVis += 1
 
     def book(self):
         room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
         room_number = input("Masukkan nomor kamar : ")
+        durasi = int(input("Ingin booking kamar berapa malam? : "))
         if room_code == "N":
             harga = self.daftar_harga[0][1]
-            self.tagihan.append(harga)
+            self.tagihan.append(harga*durasi)
             Room.Room.room_list.append(Room.Room(room_number, room_code))
             print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
+            a = int(self.tagihan[0])
+            Visitor.revenue+=a
+            return Visitor.revenue
+            
         elif room_code == "VIP":
             harga = self.daftar_harga[1][1]
-            self.tagihan.append(harga)
+            self.tagihan.append(harga*durasi)
             Room.Room.room_list.append(Room.Room(room_number, room_code))
             print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
+            a = int(self.tagihan[0])
+            Visitor.revenue+=a
+            return Visitor.revenue
+
         elif room_code == "VVIP":
             harga = self.daftar_harga[2][1]
-            self.tagihan.append(harga)
+            self.tagihan.append(harga*durasi)
             Room.Room.room_list.append(Room.Room(room_number, room_code))
             print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
+            a = int(self.tagihan[0])
+            Visitor.revenue+=a
+            return Visitor.revenue
+
         else:
             print("masukkan tipe ruangan dengan benar!")
             self.book()
@@ -71,5 +87,8 @@ class Visitor:
         self.tanggal_lahir = baru
 
 #bintang = Visitor("bintang", "asdas", "10101", "91273")
+#print(Visitor.list_visitor[0].__dict__)
+#print(Visitor.revenue)
 #bintang.book()
+#print(Visitor.revenue)
 #print(bintang.__dict__)

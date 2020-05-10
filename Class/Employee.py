@@ -1,9 +1,11 @@
 #from db.base import Base, sessionFactory
 #from db.orm.EmployeeORM import EmployeeORM
 import Room
+import Visitor
 class Employee :
     #Class variable
     jumlahEmp = 0;
+    list_employee = []
     #instance
     def __init__(self, nama_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
         self.nama_emp = nama_emp
@@ -12,7 +14,9 @@ class Employee :
         self.jabatan_emp = jabatan_emp
         self.JK_emp = JK_emp
         self.alamat_emp = alamat_emp
+        Employee.list_employee.append(self)
         Employee.jumlahEmp += 1
+
         #self.info = "name {} : \n\t id_emp: {}\n\t jabatan: {}".format(self.nama_emp, self.__id_emp, self.jabatan_emp)
     #method
 
@@ -51,7 +55,7 @@ class Employee :
         return self.JK_emp
     def setJK(self):
         new = input("masukkan jenis kelamin baru : ")
-        self.setJK = new
+        self.JK_emp = new
     
     def getAlamat(self):
         return self.alamat_emp
@@ -60,10 +64,11 @@ class Employee :
         self.alamat_emp = new
 
 class Receptionist(Employee):
+    list_receptionist = []
+    daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
     jumlahRec = 0
     def __init__(self, nama_emp, TL_emp, JK_emp, alamat_emp):
         super().__init__(nama_emp, TL_emp, "Receptionist", JK_emp, alamat_emp)
-        self.room_list = []
         self.daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
         self.tagihan = []
         Receptionist.jumlahRec += 1
@@ -81,26 +86,33 @@ class Receptionist(Employee):
             self.menu()
 
     def book(self):
-        room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
-        room_number = input("Masukkan nomor kamar : ")
-        if room_code == "N":
-            harga = self.daftar_harga[0][1]
-            self.tagihan.append(harga)
-            self.room_list.append(Room.Room(room_number, room_code))
-            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
-        elif room_code == "VIP":
-            harga = self.daftar_harga[1][1]
-            self.tagihan.append(harga)
-            self.room_list.append(Room.Room(room_number, room_code))
-            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
-        elif room_code == "VVIP":
-            harga = self.daftar_harga[2][1]
-            self.tagihan.append(harga)
-            self.room_list.append(Room.Room(room_number, room_code))
-            print("booking berhasil! \nAngka yang harus anda bayar adalah senilai {} Rupiah".format(self.tagihan[0]))
-        else:
-            print("masukkan tipe ruangan dengan benar!")
-            self.book()
+        KTP = input("masukkan nomor KTP anda : ")
+        for i in Visitor.Visitor.list_visitor : 
+            if KTP == i.no_KTP :
+                room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+                room_number = input("Masukkan nomor kamar : ")
+                durasi = int(input("Ingin booking kamar berapa malam?"))
+                if room_code == "N":
+                    harga = Receptionist.daftar_harga[0][1]
+                    i.tagihan.append(harga*durasi)
+                    Room.Room.room_list.append(Room.Room(room_number, room_code))
+                    print("booking berhasil! \nNama\t\t:  {}\nTagihan \t: {} Rupiah".format(i.nama, i.tagihan[0]))
+                elif room_code == "VIP":
+                    harga = Receptionist.daftar_harga[1][1]
+                    i.tagihan.append(harga*durasi)
+                    Room.Room.room_list.append(Room.Room(room_number, room_code))
+                    print("booking berhasil! \nNama\t\t: {}\nTagihan \t: {} Rupiah".format(i.nama, i.tagihan[0]))
+                elif room_code == "VVIP":
+                    harga = Receptionist.daftar_harga[2][1]
+                    i.tagihan.append(harga*durasi)
+                    Room.Room.room_list.append(Room.Room(room_number, room_code))
+                    print("booking berhasil! \nNama\t\t: {}\nTagihan \t: {} Rupiah".format(i.nama, i.tagihan[0]))
+                else:
+                    print("masukkan tipe ruangan dengan benar!")
+                    self.book()
+            else : 
+                print("data tidak ditemukan")
+                self.book()
         #id = room_code+room_number
         #self.room_list.append(Room.Room(room_number, room_code))
         #for i in self.room_list:
@@ -118,7 +130,7 @@ class Receptionist(Employee):
         kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
         cari = input("Masukkan nomor kamar : ")
         id = kode+cari
-        for i in self.room_list : 
+        for i in Room.Room.room_list : 
             if id == i.id_room:
                 print("Ruangan ini telah dibooking")
                 ask = input("apakah anda ingin mencari ruangan lagi?(Y/N) : ")
@@ -127,21 +139,25 @@ class Receptionist(Employee):
                 else:
                     return
             else :
-                print("Ruangan ini tersedia")
-                ask = input("apakah anda ingin mencari ruangan lagi?(Y/N) : ")
-                if ask == "Y":
+                if kode == "N" or kode == "VIP" or kode == "VVIP":
+                    print("Ruangan ini tersedia")
+                    ask = input("apakah anda ingin mencari ruangan lagi?(Y/N) : ")
+                    if ask == "Y":
+                        self.search_room()
+                    else:
+                        return
+                else : 
+                    print("itu bukan kode ruangan! gunakan huruf kapital (N/VIP/VVIP)")
                     self.search_room()
-                else:
-                    return
     
     def checkOut(self):
         kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
         cari = input("Masukkan nomor kamar : ")
         id = kode+cari
-        for i in self.room_list:
+        for i in Room.Room.room_list:
             if id == i.id_room:
-                self.room_list.remove(i)
                 print("Terima kasih telah berkunjung")
+                Room.Room.room_list.remove(i)
             else: 
                 print("data tidak ditemukan")
                 ask = input("apakah anda ingin mengulanginya lagi?(Y/N) : ")
@@ -165,29 +181,76 @@ class Receptionist(Employee):
     def reservation(self):
         pass
         
-    def perpanjang_book(self):
-        room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
-        room_number = input("Masukkan nomor kamar : ")
-        self.room_list.append(Room.Room(room_number, room_code))
+    #def perpanjang_book(self):
+    #    room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+    #    room_number = input("Masukkan nomor kamar : ")
+    #    self.room_list.append(Room.Room(room_number, room_code))
 
 class Marketing_crew(Employee):
+    list_MC = []
     jumlahMC = 0
+    rev_vis = Visitor.Visitor.revenue
     def __init__(self, nama_emp, TL_emp, JK_emp, alamat_emp):
         super().__init__(nama_emp, TL_emp, "Marketing Crew", JK_emp, alamat_emp)
         Marketing_crew.jumlahMC += 1
 
     def laporan(self):
-        pass
-    
+        total_vis = Visitor.Visitor.jumlahVis
+        total_emp = Employee.jumlahEmp
+        revenue = Marketing_crew.rev_vis
+        print("Jumlah pengunjung : {} \nJumlah Karyawan : {}\nPendapatan : {}".format(total_vis, total_emp, revenue))
+
+    def getHarga(self):
+        type = input("Masukkan tipe ruangan(N/VIP/VVIP) : ")
+        if type == "N" or type == "Normal":
+            print("Rp.{},- per malam untuk kamar {}".format(Receptionist.daftar_harga[0][1], Receptionist.daftar_harga[0][0]))
+            ulang = input("ulangi lagi ?(y/n) : ")
+            if ulang == "y" or ulang == "ya" or ulang == "Y":
+                self.getHarga()
+            else : 
+                return
+        elif type == "VIP":
+            print("Rp.{},- per malam untuk kamar {}".format(Receptionist.daftar_harga[1][1], Receptionist.daftar_harga[1][0]))
+            ulang = input("ulangi lagi ?(y/n) : ")
+            if ulang == "y" or ulang == "ya" or ulang == "Y":
+                self.getHarga()
+            else : 
+                return
+        elif type == "VVIP":
+            print("Rp.{},- per malam untuk kamar {}".format(Receptionist.daftar_harga[2][1], Receptionist.daftar_harga[2][0]))
+            ulang = input("ulangi lagi ?(y/n) : ")
+            if ulang == "y" or ulang == "ya" or ulang == "Y":
+                self.getHarga()
+            else : 
+                return
+        else: 
+            print("itu bukan tipe ruangan")
+            self.getHarga()
+
     def upd_harga(self):
         baru = input("masukkan harga baru : ")
         Room.harga = baru
 
+    def setHarga(self):
+        untuk = input("harga tipe ruangan ini akan diganti per malamnya(N/VIP/VVIP) : ")
+        baru = int(input("masukkan harga baru : "))
+        if untuk == "N":
+            Receptionist.daftar_harga[0][1] = baru
+        elif untuk == "VIP":
+            Receptionist.daftar_harga[1][1] = baru
+        elif untuk == "VVIP":
+            Receptionist.daftar_harga[2][1] = baru
+        else : 
+            print("hanya ada 3 tipe ruangan di hotel ini yaitu N/VIP/VVIP, mohon ulangi ya")
+            self.setHarga()
+        #for i in Employee.Receptionist.daftar_harga : 
+         #   for a in i : 
+          #      if untuk == "N":
 class Cashier(Employee):
+    list_cashier = []
     jumlahCashier = 0
     def __init__(self, nama_emp, TL_emp, JK_emp, alamat_emp):
         super().__init__(nama_emp, TL_emp, "Cashier", JK_emp, alamat_emp)
-        self.transaksi = []
         Cashier.jumlahCashier += 1
 
 
@@ -198,12 +261,16 @@ class Cashier(Employee):
 
 #johnny = Employee("Johnny Walkerine", "19283", "Supervisor", "male", "Cluster")
 #print(johnny.__dict__)
-
-rec1 = Receptionist("bintang", "california", "BOY", "NYC")
+m1 = Marketing_crew("bintang", "California", "Man", "NYC")
+m1.getHarga()
+#print(Receptionist.daftar_harga)
+#rec1 = Receptionist("bintang", "california", "BOY", "NYC")
 #print(rec1.__dict__)
-rec1.menu()
-print(rec1.room_list[0].__dict__)
+#rec1.menu()
+#rec1.menu()
+#rec1.menu()
+#print(rec1.room_list[0].__dict__)
 #rec1.checkOut()
-print(rec1.room_list[0].__dict__)
+#print(rec1.room_list[0].__dict__)
 #rec1.search_room()
 #print(rec1.room_list)
