@@ -69,7 +69,6 @@ class Receptionist(Employee):
     jumlahRec = 0
     def __init__(self, nama_emp, TL_emp, JK_emp, alamat_emp):
         super().__init__(nama_emp, TL_emp, "Receptionist", JK_emp, alamat_emp)
-        self.daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
         self.tagihan = []
         Receptionist.jumlahRec += 1
 
@@ -227,9 +226,9 @@ class Marketing_crew(Employee):
             print("itu bukan tipe ruangan")
             self.getHarga()
 
-    def upd_harga(self):
-        baru = input("masukkan harga baru : ")
-        Room.harga = baru
+    #def upd_harga(self):
+    #    baru = input("masukkan harga baru : ")
+    #    Room.harga = baru
 
     def setHarga(self):
         untuk = input("harga tipe ruangan ini akan diganti per malamnya(N/VIP/VVIP) : ")

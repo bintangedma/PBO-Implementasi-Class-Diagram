@@ -1,8 +1,8 @@
 class Hotel:
+    fasilitas = []
     def __init__(self, nama_hotel, alamat_hotel):
         self.nama_hotel = nama_hotel
         self.alamat_hotel = alamat_hotel
-        self.fasilitas = []
     
     def getNama_hotel(self):
         return self.nama_hotel
@@ -19,8 +19,19 @@ class Hotel:
         fac = input("nama fasilitas baru : ")
         cost = input("berapa harganya : ")
         per = input("per ? : ")
-        self.fasilitas.append([fac,cost, per])
+        Hotel.fasilitas.append([fac,cost, per])
+        ask = input("ingin tambah lagi (y/n)? ")
+        if ask == "y" or ask == "Y" or ask == "ya":
+            self.add_facility()
+        else : 
+            return
+
+    def get_facility(self):
+        print("berikut adalah fasilitas dari hotel ini")
+        for a in Hotel.fasilitas : 
+            print(a[0]," : ", a[1],"per", a[2],"\n", end='')
 
 #hotel1 = Hotel("Grand Senyiur", "gupas")
 #hotel1.add_facility()
 #print(hotel1.fasilitas[0])
+#hotel1.get_facility()
