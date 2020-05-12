@@ -6,8 +6,7 @@ class Room:
         self.room_number = str(room_number)
         self.room_code = str(room_code)
         self.id_room = self.room_code+self.room_number
-        self.tagihan = []
-        Room.room_list.append(self)
+        #Room.room_list.append(self)
 
     def search_room(self):
         kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
@@ -71,36 +70,39 @@ class Harga_room:
     def getHarga(self):
         type = input("Masukkan tipe ruangan : ")
         if type == "N" or type == "Normal":
-            print("Rp.{},- per malam untuk kamar {}".format(Harga.daftar_harga[0][1], self.daftar_harga[0][0]))
+            print("Rp.{},- per malam untuk kamar {}".format(Room.daftar_harga[0][1], Room.daftar_harga[0][0]))
         elif type == "VIP":
-            print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[1][1], self.daftar_harga[1][0]))
+            print("Rp.{},- per malam untuk kamar {}".format(Room.daftar_harga[1][1], Room.daftar_harga[1][0]))
         elif type == "VVIP":
-            print("Rp.{},- per malam untuk kamar {}".format(self.daftar_harga[2][1], self.daftar_harga[2][0]))
+            print("Rp.{},- per malam untuk kamar {}".format(Room.daftar_harga[2][1], Room.daftar_harga[2][0]))
         else: 
             print("itu bukan tipe ruangan")
             self.getHarga()
         
     def setHarga(self):
-        baru = int(input("masukkan harga baru : "))
         untuk = input("harga tipe ruangan ini akan diganti per malamnya(N/VIP/VVIP) : ")
+        baru = int(input("masukkan harga baru untuk kamar tipe {} : ".format(untuk)))
         if untuk == "N":
-            Employee.Receptionist.daftar_harga[0][1] = baru
+            #print("harga berhasil diubah untuk kamar tipe {} yang tadinya {} rupiah".format(untuk, Room.daftar_harga[0][1]))
+            Room.daftar_harga[0][1] = baru
+            #print("menjadi {} rupiah".format(baru))
         elif untuk == "VIP":
-            Employee.Receptionist.daftar_harga[1][1] = baru
+            Room.daftar_harga[1][1] = baru
         elif untuk == "VVIP":
-            Employee.Receptionist.daftar_harga[2][1] = baru
+            Room.daftar_harga[2][1] = baru
         #for i in Employee.Receptionist.daftar_harga : 
          #   for a in i : 
           #      if untuk == "N":
                     
         
-#print(Employee.Receptionist.daftar_harga.__dict__)
+#print(Room.daftar_harga)
 #r1 = Harga_room(10, 10)
 #r1.setHarga()
+#print(Room.daftar_harga)
 #print(r1.id_room)
 #r2 = Room("bintang", "bintang")
 #r2.getHarga()
 #r2.getHarga()
-#r1.book()
+#r1.getHarga()
 #print(r1.room_list[0].__dict__)
 #r1.search_room()

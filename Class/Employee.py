@@ -65,7 +65,7 @@ class Employee :
 
 class Receptionist(Employee):
     list_receptionist = []
-    daftar_harga = [["N", 500000], ["VIP", 750000], ["VVIP", 1000000]]
+    daftar_harga = Room.Room.daftar_harga
     jumlahRec = 0
     def __init__(self, nama_emp, TL_emp, JK_emp, alamat_emp):
         super().__init__(nama_emp, TL_emp, "Receptionist", JK_emp, alamat_emp)
@@ -88,27 +88,32 @@ class Receptionist(Employee):
         KTP = input("masukkan nomor KTP anda : ")
         for i in Visitor.Visitor.list_visitor : 
             if KTP == i.no_KTP :
-                room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
+                i.book()
+                """room_code = input("Masukkan tipe kamar : (N/VIP/VVIP)")
                 room_number = input("Masukkan nomor kamar : ")
                 durasi = int(input("Ingin booking kamar berapa malam?"))
+                id = room_code+room_number
                 if room_code == "N":
                     harga = Receptionist.daftar_harga[0][1]
                     i.tagihan.append(harga*durasi)
                     Room.Room.room_list.append(Room.Room(room_number, room_code))
+                    i.kamar.append(id)
                     print("booking berhasil! \nNama\t\t:  {}\nTagihan \t: {} Rupiah".format(i.nama, i.tagihan[0]))
                 elif room_code == "VIP":
                     harga = Receptionist.daftar_harga[1][1]
                     i.tagihan.append(harga*durasi)
                     Room.Room.room_list.append(Room.Room(room_number, room_code))
+                    i.kamar.append(id)
                     print("booking berhasil! \nNama\t\t: {}\nTagihan \t: {} Rupiah".format(i.nama, i.tagihan[0]))
                 elif room_code == "VVIP":
                     harga = Receptionist.daftar_harga[2][1]
                     i.tagihan.append(harga*durasi)
                     Room.Room.room_list.append(Room.Room(room_number, room_code))
+                    i.kamar.append(id)
                     print("booking berhasil! \nNama\t\t: {}\nTagihan \t: {} Rupiah".format(i.nama, i.tagihan[0]))
                 else:
                     print("masukkan tipe ruangan dengan benar!")
-                    self.book()
+                    self.book()"""
             else : 
                 print("data tidak ditemukan")
                 self.book()
@@ -136,7 +141,7 @@ class Receptionist(Employee):
                 if ask == "Y":
                     self.search_room()
                 else:
-                    return
+                    break
             else :
                 if kode == "N" or kode == "VIP" or kode == "VVIP":
                     print("Ruangan ini tersedia")
@@ -144,12 +149,22 @@ class Receptionist(Employee):
                     if ask == "Y":
                         self.search_room()
                     else:
-                        return
+                        break
                 else : 
                     print("itu bukan kode ruangan! gunakan huruf kapital (N/VIP/VVIP)")
                     self.search_room()
-    
+
     def checkOut(self):
+        KTP = input("masukkan nomor KTP anda : ")
+        for visitor in Visitor.Visitor.list_visitor : 
+            if KTP == visitor.no_KTP :
+                for room in Room.Room.room_list:
+                    if visitor.kamar == room : 
+                        Room.Room.room_list.remove(room)
+                visitor.checkOut()
+                
+
+    def debook(self):
         kode = input("Masukkan tipe kamar : (N/VIP/VVIP)")
         cari = input("Masukkan nomor kamar : ")
         id = kode+cari
@@ -257,10 +272,9 @@ class Cashier(Employee):
         KTP = input("masukkan nomor KTP anda : ")
         for i in Visitor.Visitor.list_visitor : 
             if KTP == i.no_KTP :
-                print("========receipt=========")
-                print("Total yang harus dibayar : {}".format(i.tagihan[0]))
+                i.checkOut()
 
-
+#print(Visitor.Visitor.list_visitor[0].__dict__)
 #johnny = Employee("Johnny Walkerine", "19283", "Supervisor", "male", "Cluster")
 #print(johnny.__dict__)
 #m1 = Marketing_crew("bintang", "California", "Man", "NYC")
@@ -268,11 +282,20 @@ class Cashier(Employee):
 #print(Receptionist.daftar_harga)
 #rec1 = Receptionist("bintang", "california", "BOY", "NYC")
 #print(rec1.__dict__)
+#rec1.book()
+#rec1.search_room()
+#print(Room.Room.room_list[0].__dict__)
+#print(Room.Room.room_list)
+#rec1.checkOut()
+#print(Room.Room.room_list)
 #rec1.menu()
-#rec1.menu()
+#print(Room.Room.room_list)
+#print(Visitor.bintang.__dict__)
 #rec1.menu()
 #print(rec1.room_list[0].__dict__)
 #rec1.checkOut()
 #print(rec1.room_list[0].__dict__)
 #rec1.search_room()
 #print(rec1.room_list)
+#cas1 = Cashier("bradley", "london", "L", "NYC")
+#cas1.receipt()
