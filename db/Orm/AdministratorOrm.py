@@ -4,11 +4,11 @@ from db.base import Base, sessionFactory
 class AdministratorOrm(Base):
     __tablename__ = 'Administrator'
 
-    nama_admin = Column(String, primary_key=True)
+    id_admin = Column(String, primary_key=True)
+    nama_admin = Column(String, unique_key=True)
     kode_admin = Column(String)
 
     def __init__(self, nama_admin, kode_admin):
-        self.id = id_admin
         self.nama_admin = nama_admin
         self.kode_admin = kode_admin
 

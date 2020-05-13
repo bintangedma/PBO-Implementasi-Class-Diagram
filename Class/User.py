@@ -1,16 +1,23 @@
+from db.Orm.UserOrm import UserOrm
+from db.base import sessionFactory
+from Class.Authority import Authority
+
 class User : 
     #instance
-    def __init__(self, username, password):
+    def __init__(self, username, password, Authority):
         self.username = username
         self.password = password
+        self.authority = Authority
+
     #method
+    def GetAuthority(self):
+        return self.authority
     def GetUsername(self):
         return self.username
 
     def SetUsername(self, new):
         new = input("masukkan username baru : ")
         self.username = new
-
     def SetPassword(self,new):
         self.password = new
 
