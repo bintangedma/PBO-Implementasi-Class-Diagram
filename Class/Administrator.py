@@ -2,6 +2,8 @@ import Visitor
 import Employee
 import Room
 from db.base import Base, sessionFactory
+from db.Orm.AdministratorOrm import AdministratorOrm
+
 
 class Administrator : 
     #instance

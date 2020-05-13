@@ -1,5 +1,5 @@
-#from db.Orm.HotelOrm import HotelOrm
-#from db.base import Base, sessionFactory
+from db.Orm.HotelOrm import HotelOrm
+from db.base import Base, sessionFactory
 
 class Hotel:
     fasilitas = []

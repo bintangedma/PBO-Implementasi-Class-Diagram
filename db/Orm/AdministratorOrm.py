@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Text, Enum
+from sqlalchemy import Column, String, Integer
 from db.base import Base, sessionFactory
 
 class AdministratorOrm(Base):

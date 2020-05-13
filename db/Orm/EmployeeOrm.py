@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Integer, Text, Enum
+from sqlalchemy import Column, String, Integer
 from db.base import Base, sessionFactory
 
 class EmployeeOrm(Base):
@@ -34,7 +34,7 @@ class EmployeeOrm(Base):
     def insertEmployee(self):
         try:
             session = sessionFactory()
-            apotekerOrm = EmployeeOrm(self.__nama_emp, self.__TL_emp, self.__jabatan_emp, self.__JK_emp, self.__alamat_emp)
+            employeeOrm = EmployeeOrm(self.__nama_emp, self.__TL_emp, self.__jabatan_emp, self.__JK_emp, self.__alamat_emp)
             session.add(employeeOrm)
             session.commit()
             session.close()
@@ -44,13 +44,13 @@ class EmployeeOrm(Base):
             print("Data Berhasil Disimpan!")
 
     @staticmethod
-    def updateApoteker(id_emp):
+    def updateEmployee(id_emp):
         try:
             newNama = input("Masukkan Nama Baru: ")
             newTL = input("Masukkan Tanggal Lahir Baru: ")
             newJabatan = input("Masukkan Jabatan Baru: ")
             newJK = input("Masukkan Jenis Kelamin Baru: ")
-            newAlamat = input("Masukkkan Spesialis Baru")
+            newAlamat = input("Masukkkan Alamat Baru")
             session = sessionFactory()
             session.query(EmployeeOrm).filter_by(id=id_emp).update({
                 EmployeeOrm.nama_emp: newNama, EmployeeOrm.TL_emp: newTL,

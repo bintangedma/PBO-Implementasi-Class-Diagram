@@ -1,5 +1,7 @@
 import Room
-#from db.Orm.VisitorOrm import VisitorOrm
+from db.Orm.VisitorOrm import VisitorOrm
+from db.base import Base
+
 class Visitor:
     list_visitor = []
     jumlahVis = 0;
