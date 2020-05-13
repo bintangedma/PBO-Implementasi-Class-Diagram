@@ -121,17 +121,17 @@ class Visitor:
         baru = input("masukkan tanggal lahir baru : ")
         self.tanggal_lahir = baru
 
-bintang = Visitor("bintang", "asdas", "10101", "91273")
+#bintang = Visitor("bintang", "asdas", "10101", "91273")
 #print(Visitor.list_visitor[0].__dict__)
 #print(Visitor.revenue)
 
 #print(Room.Room.room_list)
-bintang.book()
-print(bintang.__dict__)
+#bintang.book()
+#print(bintang.__dict__)
 #print(Room.Room.room_list)
 #print(Room.Room.room_list[0].__dict__)
-bintang.checkOut()
+#bintang.checkOut()
 #print(Room.Room.room_list)
 #bintang.checkOut()
 #print(Visitor.revenue)
-print(bintang.__dict__)
+#print(bintang.__dict__)
