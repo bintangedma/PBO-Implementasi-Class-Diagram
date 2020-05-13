@@ -1,5 +1,5 @@
 import Room
-from db.Orm.VisitorOrm import VisitorOrm
+#from db.Orm.VisitorOrm import VisitorOrm
 class Visitor:
     list_visitor = []
     jumlahVis = 0;
@@ -72,9 +72,10 @@ class Visitor:
             for i in self.tagihan : 
                 self.tagihan.remove(i)
             for kamar in self.kamar :
-                self.riwayat.append(kamar)
+                #self.riwayat.append(kamar)
                 self.kamar.remove(kamar)
-            self.riwayat.append(receipt)
+            #self.riwayat.append(receipt)
+            self.riwayat.append([kamar, receipt])
             for room in Room.Room.room_list : 
                 if kamar == room.id_room : 
                     Room.Room.room_list.remove(room)
@@ -120,17 +121,17 @@ class Visitor:
         baru = input("masukkan tanggal lahir baru : ")
         self.tanggal_lahir = baru
 
-#bintang = Visitor("bintang", "asdas", "10101", "91273")
+bintang = Visitor("bintang", "asdas", "10101", "91273")
 #print(Visitor.list_visitor[0].__dict__)
 #print(Visitor.revenue)
 
 #print(Room.Room.room_list)
-#bintang.book()
-#print(bintang.__dict__)
+bintang.book()
+print(bintang.__dict__)
 #print(Room.Room.room_list)
 #print(Room.Room.room_list[0].__dict__)
-#bintang.checkOut()
+bintang.checkOut()
 #print(Room.Room.room_list)
 #bintang.checkOut()
 #print(Visitor.revenue)
-#print(bintang.__dict__)
+print(bintang.__dict__)
