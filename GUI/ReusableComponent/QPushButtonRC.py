@@ -2,7 +2,7 @@ from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtWidgets import QPushButton
 
 
-class QPushButtonReuse(QPushButton):
+class QPushButtonRC(QPushButton):
 
     def __init__(self, text):
         super().__init__()

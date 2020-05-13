@@ -2,7 +2,7 @@ from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtWidgets import QComboBox
 
 
-class QComboBoxReuse(QComboBox):
+class QComboBoxRC(QComboBox):
 
     def __init__(self):
         super().__init__()

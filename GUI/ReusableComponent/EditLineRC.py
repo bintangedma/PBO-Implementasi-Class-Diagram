@@ -2,7 +2,7 @@ from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtWidgets import QLineEdit
 
 
-class EditLineReuse(QLineEdit):
+class EditLineRC(QLineEdit):
 
     def __init__(self, placeholder):
         super().__init__()

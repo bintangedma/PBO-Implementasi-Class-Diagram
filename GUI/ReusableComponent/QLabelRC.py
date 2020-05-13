@@ -2,7 +2,7 @@ from PyQt5 import QtGui, QtWidgets
 from PyQt5.QtWidgets import QLabel
 
 
-class QLabelReuse(QLabel):
+class QLabelRC(QLabel):
     def __init__(self, text, colorName):
         super().__init__()
         self.setText(text)
