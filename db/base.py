@@ -5,6 +5,9 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 engine = create_engine('sqlite:///Hotel.db')
-Base.metadata.create_all(engine)
 
 Session = sessionmaker(bind=engine)
+
+def sessionFactory():
+    Base.metadata.create_all(engine)
+    return Session()

@@ -1,3 +1,6 @@
+#from db.Orm.HotelOrm import HotelOrm
+#from db.base import Base, sessionFactory
+
 class Hotel:
     fasilitas = []
     def __init__(self, nama_hotel, alamat_hotel):
@@ -31,7 +34,7 @@ class Hotel:
         for a in Hotel.fasilitas : 
             print(a[0]," : ", a[1],"per", a[2],"\n", end='')
 
-#hotel1 = Hotel("Grand Senyiur", "gupas")
-#hotel1.add_facility()
-#print(hotel1.fasilitas[0])
+hotel1 = Hotel("Grand Senyiur", "gupas")
+hotel1.add_facility()
+print(hotel1.fasilitas)
 #hotel1.get_facility()

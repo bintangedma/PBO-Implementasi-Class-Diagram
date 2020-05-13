@@ -4,7 +4,7 @@ from db.base import Base, sessionFactory
 class VisitorOrm(Base) :
     __tablename__ = 'Visitor'
 
-    id_visitor = Column(integer, primary_key=True)
+    id_visitor = Column(Integer, primary_key=True)
     nama = Column(String)
     alamat = Column(String)
     no_KTP = Column(String)

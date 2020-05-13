@@ -1,4 +1,5 @@
 import Room
+from db.Orm.VisitorOrm import VisitorOrm
 class Visitor:
     list_visitor = []
     jumlahVis = 0;
@@ -119,7 +120,7 @@ class Visitor:
         baru = input("masukkan tanggal lahir baru : ")
         self.tanggal_lahir = baru
 
-bintang = Visitor("bintang", "asdas", "10101", "91273")
+#bintang = Visitor("bintang", "asdas", "10101", "91273")
 #print(Visitor.list_visitor[0].__dict__)
 #print(Visitor.revenue)
 
@@ -132,4 +133,4 @@ bintang = Visitor("bintang", "asdas", "10101", "91273")
 #print(Room.Room.room_list)
 #bintang.checkOut()
 #print(Visitor.revenue)
-print(bintang.__dict__)
+#print(bintang.__dict__)

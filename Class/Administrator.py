@@ -1,7 +1,7 @@
 import Visitor
 import Employee
 import Room
-#from db.base import Base, sessionFactory
+from db.base import Base, sessionFactory
 
 class Administrator : 
     #instance

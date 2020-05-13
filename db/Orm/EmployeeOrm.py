@@ -4,7 +4,7 @@ from db.base import Base, sessionFactory
 class EmployeeOrm(Base):
     __tablename__ = 'Employee'
 
-    id_emp = Column(integer, primary_key=True)
+    id_emp = Column(Integer, primary_key=True)
     nama_emp = Column(String)
     TL_emp = Column(String)
     jabatan_emp = Column(String)
