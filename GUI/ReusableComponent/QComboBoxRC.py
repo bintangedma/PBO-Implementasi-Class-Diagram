@@ -14,7 +14,7 @@ class QComboBoxRC(QComboBox):
         font.setFamily("Product Sans")
         font.setPointSize(12)
         font.setBold(True)
-        font.setWeight(75)
+        font.setWeight(55)
 
         self.setFont(font)
 
