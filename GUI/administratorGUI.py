@@ -36,13 +36,13 @@ class AdminView(QDialog):
 
         lbljudul = QLabelRC("Data Admin", "rgb(125, 15, 15)")
 
-        lblnama = QLabelRC("\nNama\n", "grey")
+        lblnama = QLabelRC("\nNama\n", "black")
         lblnama.setFont(self.font)
-        self.txtnama = EditLineRC("")
+        self.txtnama = EditLineRC("Input Nama")
 
-        lblkode = QLabelRC("\n\nKode\n", "grey")
+        lblkode = QLabelRC("\n\nKode\n", "black")
         lblkode.setFont(self.font)
-        self.txtkode = EditLineRC("")
+        self.txtkode = EditLineRC("Input Kode")
 
         # >>>> ADD DATA <<<<
         self.btnTambah = QPushButtonRC2("", "Assets/img/button.png")
