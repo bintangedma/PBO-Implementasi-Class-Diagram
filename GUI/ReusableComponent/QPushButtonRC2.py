@@ -13,7 +13,7 @@ class QPushButtonRC2(QPushButton):
                            "color : white;\n")
         self.setText(text)
         font = QtGui.QFont()
-        font.setFamily("Product Sans")
+        font.setFamily("Arial")
         font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)

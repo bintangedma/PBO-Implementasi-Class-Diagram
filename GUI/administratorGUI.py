@@ -45,13 +45,13 @@ class AdminView(QDialog):
         self.txtkode = EditLineRC("Input Kode")
 
         # >>>> ADD DATA <<<<
-        self.btnTambah = QPushButtonRC2("", "Assets/img/button.png")
+        self.btnTambah = QPushButtonRC2("Tambah Data", "Assets/img/button.png")
         self.btnTambah.setStyleSheet("background-color : rgb(125, 15, 15);\n"
                                      "border : none;\n"
                                      "border-radius : 25px;\n"
-                                     "height : 80%;\n"
+                                     "height : 50%;\n"
                                      "color : white;\n")
-        self.btnTambah.setIconSize(QtCore.QSize(75, 54))
+        self.btnTambah.setIconSize(QtCore.QSize(60, 35))
 
         # >>>> EVENT SECTION <<<<
         self.btnTambah.clicked.connect(lambda: self.insertData())
@@ -71,8 +71,10 @@ class AdminView(QDialog):
 
     @pyqtSlot()
     def insertData(self):
-        self.nama = self.txtnama.text()
-        self.kode = self.txtkode.text()
+        self.id_admin = self.txtkode.text()+self.txtnama.text()
+        self.nama_admin = self.txtnama.text()
+        self.kode_admin = self.txtkode.text()
+        admin = AdministratorOrm(self.id_admin, self.nama_admin, self.kode_admin)
         try:
             AdministratorOrm.insertAdmin(admin)
         except Exception as e:
@@ -96,7 +98,7 @@ class AdminView(QDialog):
         self.txtkode.setText("")
         self.txtnama.setFocus()
 
-app = QApplication(sys.argv)
-admin = AdminView()
-admin.show()
-sys.exit(app.exec_())
+#app = QApplication(sys.argv)
+#admin = AdminView()
+#admin.show()
+#sys.exit(app.exec_())
