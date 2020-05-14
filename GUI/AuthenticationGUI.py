@@ -16,7 +16,7 @@ from GUI.MainMenu import MainMenu
 class LoginView(QWidget):
     def __init__(self):
         super().__init__()
-        self.resize(1120, 810)
+        self.resize(1136, 833)
         self.setWindowTitle("LOGIN HOTEL")
 
         # >>>> LAYOUT 1 SECTION <<<<
@@ -42,8 +42,8 @@ class LoginView(QWidget):
         lblusername = QLabelRC("Username", "grey")
         lblpassword = QLabelRC("Password", "grey")
         # EditLine
-        self.txtUsername = EditLineRC("masukkan username anda disini")
-        self.txtpassword = EditLineRC("masukkan password anda disini")
+        self.txtUsername = EditLineRC("")
+        self.txtpassword = EditLineRC("")
         self.txtpassword.setEchoMode(QLineEdit.Password)
         # QPushButton
         self.btnLogin = QPushButtonRC("Login")

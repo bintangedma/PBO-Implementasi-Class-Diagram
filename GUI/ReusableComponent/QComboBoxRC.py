@@ -8,12 +8,11 @@ class QComboBoxRC(QComboBox):
         super().__init__()
         self.setStyleSheet("border : 0;\n"
                            "outline : 0;\n"
-                           "background : white;\n"
-                           "border-bottom : 2px solid rgb(125, 15, 15);\n"
-                           "border-top : 2px solid rgb(125, 15, 15);")
+                           # "background : transparent;\n"
+                           "border-bottom : 2px solid rgb(125, 15, 15);")
         font = QtGui.QFont()
-        font.setFamily("Arial Narrow")
-        font.setPointSize(14)
+        font.setFamily("Product Sans")
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(55)
 

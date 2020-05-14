@@ -4,16 +4,14 @@ from db.base import Base, sessionFactory
 class EmployeeOrm(Base):
     __tablename__ = 'Employee'
 
-    id_emp = Column(String, primary_key=True)
+    id_emp = Column(Integer, primary_key=True)
     nama_emp = Column(String)
     TL_emp = Column(String)
     jabatan_emp = Column(String)
     JK_emp = Column(String)
     alamat_emp = Column(String)
 
-    jumlahEmp = 1
-    def __init__(self,id_emp, nama_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
-        self.id_emp = str("EMP00") + str(EmployeeOrm.jumlahEmp)
+    def __init__(self, nama_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
         self.nama_emp = nama_emp
         self.TL_emp = TL_emp
         self.jabatan_emp = jabatan_emp
@@ -36,7 +34,7 @@ class EmployeeOrm(Base):
     def insertEmployee(self):
         try:
             session = sessionFactory()
-            employeeOrm = EmployeeOrm(self.id_emp, self.nama_emp, self.TL_emp, self.jabatan_emp, self.JK_emp, self.alamat_emp)
+            employeeOrm = EmployeeOrm(self.__nama_emp, self.__TL_emp, self.__jabatan_emp, self.__JK_emp, self.__alamat_emp)
             session.add(employeeOrm)
             session.commit()
             session.close()
