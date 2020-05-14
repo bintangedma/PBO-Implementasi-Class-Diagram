@@ -36,7 +36,7 @@ class UserView(QDialog):
 
         lbljudul = QLabelRC("Data User", "rgb(125, 15, 15)")
 
-        lblauthority = QLabelRC("\nOtoritas\n", "grey")
+        lblauthority = QLabelRC("\nOtoritas\n", "black")
         lblauthority.setFont(self.font)
         self.cmbauthority = QComboBoxRC()
         self.cmbauthority.addItems(
@@ -44,13 +44,13 @@ class UserView(QDialog):
         self.pilAuthority = [Authority.Administrator, Authority.Employee, Authority.Receptionist,
                              Authority.Marketing_crew, Authority.Cashier, Authority.Visitor]
 
-        lblusername = QLabelRC("\nUsername\n", "grey")
+        lblusername = QLabelRC("\nUsername\n", "black")
         lblusername.setFont(self.font)
-        self.txtusername = EditLineRC("")
+        self.txtusername = EditLineRC("Input Username")
 
-        lblpassword = QLabelRC("\n\nPassword\n", "grey")
+        lblpassword = QLabelRC("\n\nPassword\n", "black")
         lblpassword.setFont(self.font)
-        self.txtpassword = EditLineRC("")
+        self.txtpassword = EditLineRC("Input Password")
 
         # >>> ADD DATA <<<
         self.btnTambah = QPushButtonRC2("", "Assets/img/button.png")
