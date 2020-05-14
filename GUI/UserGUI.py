@@ -1,11 +1,12 @@
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import Qt, pyqtSlot
-from PyQt5.QtWidgets import QDialog, QGridLayout, QMessageBox
+from PyQt5.QtWidgets import QDialog, QGridLayout, QMessageBox, QApplication
+import sys
 
 from Class.Authority import Authority
 from Class.User import User
 from db.Orm.UserOrm import UserOrm
-from GUI.ReusableComponent.EditLineRC import EditLineReuse
+from GUI.ReusableComponent.EditLineRC import EditLineRC
 from GUI.ReusableComponent.QComboBoxRC import QComboBoxRC
 from GUI.ReusableComponent.QFrameRC import QFrameRC
 from GUI.ReusableComponent.QLabelRC import QLabelRC
@@ -29,31 +30,33 @@ class UserView(QDialog):
         self.layoutUtama = QGridLayout()
 
         # ======== FIRST LAYOUT =======
-        framelayout1 = QFrameReuse("white")
+        framelayout1 = QFrameRC("white")
         framelayout1.setContentsMargins(25, 25, 25, 25)
         layout1 = QGridLayout(framelayout1)
 
-        lbljudul = QLabelReuse("Data User", "rgb(0, 85, 255)")
+        lbljudul = QLabelRC("Data User", "rgb(125, 15, 15)")
 
-        lblusername = QLabelReuse("\nUsername\n", "grey")
+        lblauthority = QLabelRC("\nOtoritas\n", "grey")
+        lblauthority.setFont(self.font)
+        self.cmbauthority = QComboBoxRC()
+        self.cmbauthority.addItems(
+            ['Administrator', 'Employee', 'Receptionist', 'Marketing_crew', 'Cashier', 'Visitor'])
+        self.pilAuthority = [Authority.Administrator, Authority.Employee, Authority.Receptionist,
+                             Authority.Marketing_crew, Authority.Cashier, Authority.Visitor]
+
+        lblusername = QLabelRC("\nUsername\n", "grey")
         lblusername.setFont(self.font)
-        self.txtusername = EditLineReuse("")
+        self.txtusername = EditLineRC("")
 
-        lblpassword = QLabelReuse("\n\nPassword\n", "grey")
+        lblpassword = QLabelRC("\n\nPassword\n", "grey")
         lblpassword.setFont(self.font)
-        self.txtpassword = EditLineReuse("")
-
-        lblhakAkses = QLabelReuse("\nHak Akses\n", "grey")
-        lblhakAkses.setFont(self.font)
-        self.cmbhakAkses = QComboBoxReuse()
-        self.cmbhakAkses.addItems(['DOKTER', 'APOTEKER'])
-        self.pilHakAkses = [HakAkses.DOKTER, HakAkses.APOTEKER]
+        self.txtpassword = EditLineRC("")
 
         # ======== ADD DATA ===========
-        self.btnTambah = QPushButtonReuseTwo("", "assets/img/button.png")
-        self.btnTambah.setStyleSheet("background-color : rgb(0, 85, 255);\n"
+        self.btnTambah = QPushButtonRC2("", "Assets/img/button.png")
+        self.btnTambah.setStyleSheet("background-color : rgb(125, 15, 15);\n"
                                      "border : none;\n"
-                                     "border-radius : 10px;\n"
+                                     "border-radius : 25px;\n"
                                      "height : 80%;\n"
                                      "color : white;\n")
         self.btnTambah.setIconSize(QtCore.QSize(75, 54))
@@ -70,8 +73,8 @@ class UserView(QDialog):
         layout1.addWidget(self.txtusername, 2, 0, 2, 3)
         layout1.addWidget(lblpassword, 4, 0, 1, 3, Qt.AlignLeft)
         layout1.addWidget(self.txtpassword, 5, 0, 2, 3)
-        layout1.addWidget(lblhakAkses, 1, 5, 1, 3)
-        layout1.addWidget(self.cmbhakAkses, 2, 5, 2, 3)
+        layout1.addWidget(lblauthority, 1, 5, 1, 3)
+        layout1.addWidget(self.cmbauthority, 2, 5, 2, 3)
 
         self.setLayout(self.layoutUtama)
         self.show()
@@ -80,8 +83,8 @@ class UserView(QDialog):
     def insertData(self):
         self.username = self.txtusername.text()
         self.password = self.txtpassword.text()
-        self.hakAkses = self.pilHakAkses[self.cmbhakAkses.currentIndex()]
-        user = User(self.username, self.password, self.hakAkses)
+        self.authority = self.pilAuthority[self.cmbauthority.currentIndex()]
+        user = User(self.username, self.password, self.authority)
         try:
             UserOrm.insertUser(user)
         except Exception as e:
@@ -103,5 +106,10 @@ class UserView(QDialog):
     def clear(self):
         self.txtusername.setText("")
         self.txtpassword.setText("")
-        self.cmbhakAkses.setCurrentIndex(0)
+        self.cmbauthority.setCurrentIndex(0)
         self.txtusername.setFocus()
+
+app = QApplication(sys.argv)
+wandi = UserView()
+wandi.show()
+sys.exit(app.exec_())

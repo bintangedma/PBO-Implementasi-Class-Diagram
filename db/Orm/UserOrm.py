@@ -9,12 +9,12 @@ class UserOrm(Base):
     id = Column(Integer, primary_key=True)
     username = Column(String, unique=True)
     password = Column(String)
-    otoritas = Column(Enum(Authority))
+    authority = Column(Enum(Authority))
 
-    def __init__(self, username, password, otoritas):
+    def __init__(self, username, password, authority):
         self.username = username
         self.password = password
-        self.otoritas = otoritas
+        self.authority = authority
 
     @staticmethod
     def showUser():
@@ -23,7 +23,7 @@ class UserOrm(Base):
             for user in session.query(UserOrm).all():
                 print("Id User = {}, Username = {}, Password = {}, Hak Akses = {}".format(user.id, user.username,
                                                                                           user.password,
-                                                                                          user.otoritas))
+                                                                                          user.authority))
             session.close()
         except Exception as e:
             print("===>", e)
@@ -32,7 +32,7 @@ class UserOrm(Base):
     def insertUser(user):
         try:
             session = sessionFactory()
-            userOrm = UserOrm(user.username, user.password, user.otoritas)
+            userOrm = UserOrm(user.username, user.password, user.authority)
             session.add(userOrm)
             session.commit()
             session.close()
@@ -84,7 +84,7 @@ class UserOrm(Base):
         try:
             session = sessionFactory()
             for user in session.query(UserOrm).filter_by(username = username):
-                return user.otoritas
+                return user.authority
             session.close()
         except Exception as e:
             print("===>", e)

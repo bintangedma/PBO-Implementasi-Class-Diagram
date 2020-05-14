@@ -49,5 +49,5 @@ class User :
             print("Unknown command")
             self.askCom()
 
-bin = User("bintang", "bintang")
-bin.askUser()
+#bin = User("bintang", "bintang")
+#bin.askUser()

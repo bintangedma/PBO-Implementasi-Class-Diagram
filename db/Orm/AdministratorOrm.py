@@ -5,7 +5,7 @@ class AdministratorOrm(Base):
     __tablename__ = 'Administrator'
 
     id_admin = Column(String, primary_key=True)
-    nama_admin = Column(String, unique_key=True)
+    nama_admin = Column(String, unique=True)
     kode_admin = Column(String)
 
     def __init__(self, nama_admin, kode_admin):
