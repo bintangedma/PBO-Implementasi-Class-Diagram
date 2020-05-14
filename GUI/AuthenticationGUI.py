@@ -19,7 +19,7 @@ class LoginView(QWidget):
         self.resize(1136, 833)
         self.setWindowTitle("LOGIN HOTEL")
 
-        # =========== LAYOUT 1 SECTION ===========
+        # >>>> LAYOUT 1 SECTION <<<<
         lbllogo = QLabelRC("yo", "yo")
         lbllogo.setPixmap(QtGui.QPixmap("Assets/img/sleep.jpg"))
         lbllogo.setAlignment(QtCore.Qt.AlignCenter)
@@ -29,7 +29,7 @@ class LoginView(QWidget):
         lblCredit = QLabelRC("'Chilling out on the bed in your hotel room watching television, while wearing your own pajamas, is sometimes the best part of a vacation.'", "grey")
         lblCredit.setAlignment(QtCore.Qt.AlignCenter)
 
-        # =========== LAYOUT 2 SECTION ===========
+        # >>>> LAYOUT 2 SECTION <<<<
         lbljudul = QLabelRC("HOTEL", "black")
         font = QtGui.QFont()
         font.setFamily("Candara")
@@ -49,7 +49,7 @@ class LoginView(QWidget):
         self.btnLogin = QPushButtonRC("Login")
         self.btnLogin.clicked.connect(lambda: self.buttonClick())
 
-        # =========== LAYOUT SECTION =============
+        # >>>> LAYOUT SECTION <<<<
         layout1 = QVBoxLayout()
         layout1.addWidget(lbllogo)
         layout1.addWidget(lblPresentBy)
