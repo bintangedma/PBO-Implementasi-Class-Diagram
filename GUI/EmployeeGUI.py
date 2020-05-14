@@ -37,7 +37,7 @@ class EmployeeView(QDialog):
 
         lbljudul = QLabelRC("Data Employee", "rgb(125, 15, 15)")
 
-        lblauthority = QLabelRC("\nJabatan\n", "grey")
+        lblauthority = QLabelRC("\nJabatan\n", "black")
         lblauthority.setFont(self.font)
         self.cmbauthority = QComboBoxRC()
         self.cmbauthority.addItems(
@@ -45,7 +45,7 @@ class EmployeeView(QDialog):
         self.pilAuthority = [Authority.Receptionist,
                              Authority.Marketing_crew, Authority.Cashier]
 
-        lbljeniskelamin = QLabelRC("\nJabatan\n", "grey")
+        lbljeniskelamin = QLabelRC("\nJenis Kelamin\n", "black")
         lbljeniskelamin.setFont(self.font)
         self.cmbjeniskelamin = QComboBoxRC()
         self.cmbjeniskelamin.addItems(
@@ -53,17 +53,17 @@ class EmployeeView(QDialog):
         #self.pilJenKel = [JenKel.Laki-laki,
         #                     JenKel.Perempuan]
 
-        lblnama = QLabelRC("\nNama\n", "grey")
+        lblnama = QLabelRC("\nNama\n", "black")
         lblnama.setFont(self.font)
-        self.txtnama = EditLineRC("")
+        self.txtnama = EditLineRC("Input Nama")
 
-        lblid = QLabelRC("\n\nId\n", "grey")
+        lblid = QLabelRC("\n\nId\n", "black")
         lblid.setFont(self.font)
-        self.txtid = EditLineRC("")
+        self.txtid = EditLineRC("Input Id")
 
-        lblalamat = QLabelRC("\n\nAlamat\n", "grey")
+        lblalamat = QLabelRC("\n\nAlamat\n", "black")
         lblalamat.setFont(self.font)
-        self.txtalamat = EditLineRC("")
+        self.txtalamat = EditLineRC("Input Alamat")
 
         # >>> ADD DATA <<<
         self.btnTambah = QPushButtonRC2("", "Assets/img/button.png")
