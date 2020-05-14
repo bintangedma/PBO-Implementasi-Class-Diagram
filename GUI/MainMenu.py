@@ -20,7 +20,7 @@ class MainMenu(QWidget):
         self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
         self.setWindowTitle("MAIN MENU")
 
-        # ========== SIDEBAR SECTION =============
+        # >>>> SIDEBAR SECTION <<<<
         frameSideBar = QFrameRC("white")
         frameSideBar.setContentsMargins(10, 10, 10, 10)
 
@@ -36,7 +36,7 @@ class MainMenu(QWidget):
         self.btnUser = QPushButtonRC2("Form.User", "Assets/img/button.png")
         self.btnLogOut = QPushButtonRC2("Log Out", "Assets/img/button.png")
 
-        # =========== EVENT SECTION =============
+        # >>>> EVENT SECTION <<<<
         self.btnLogOut.clicked.connect(lambda: self.logOutSlot())
         self.btnAdministrator.clicked.connect(lambda: self.adminSlot())
         self.btnEmployee.clicked.connect(lambda: self.empSlot())
@@ -46,7 +46,7 @@ class MainMenu(QWidget):
         self.btnVisitor.clicked.connect(lambda: self.visSlot())
         self.btnUser.clicked.connect(lambda: self.userSlot())
 
-        # ========== DASHBOARD SECTION TITLE ===========
+        # >>>> DASHBOARD SECTION TITLE <<<<
         frameTitle = QFrameRC("white")
 
         headerLayout = QGridLayout(frameTitle)
@@ -54,7 +54,7 @@ class MainMenu(QWidget):
         self.authority.setAlignment(QtCore.Qt.AlignLeft)
         profile = QPushButtonRC2("", "assets/img/profile.png")
 
-        # ========== DASHBOARD SECTION BODY ===========
+        # >>>> DASHBOARD SECTION BODY <<<<
         frameDashboard = QFrameRC("rgb(125, 15, 15)")
         frameLayout = QHBoxLayout(frameDashboard)
         frameLayout.setContentsMargins(40, 40, 40, 40)
@@ -88,7 +88,7 @@ class MainMenu(QWidget):
         lbllogo.setPixmap(QtGui.QPixmap("assets/img/medical256.png"))
         lbllogo.setAlignment(QtCore.Qt.AlignRight)
 
-        # ========== LAYOUT SECTION ==============
+        # >>>> LAYOUT SECTION <<<<
         sideBarLayout.addWidget(btnMainMenu, 0, 0)
         sideBarLayout.addWidget(self.btnAdministrator, 1, 0)
         sideBarLayout.addWidget(self.btnEmployee, 2, 0)
