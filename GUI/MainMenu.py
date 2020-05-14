@@ -20,21 +20,21 @@ class MainMenu(QWidget):
         self.setWindowFlag(QtCore.Qt.WindowCloseButtonHint, False)
         self.setWindowTitle("MAIN MENU")
 
-        # >>>> SIDEBAR SECTION <<<<
-        frameSideBar = QFrameRC("white")
-        frameSideBar.setContentsMargins(10, 10, 10, 10)
+        # >>>> BOTTOMBAR SECTION <<<<
+        frameBottomBar = QFrameRC("white")
+        frameBottomBar.setContentsMargins(10, 10, 10, 10)
 
-        sideBarLayout = QGridLayout(frameSideBar)
-        sideBarLayout.setSpacing(5)
+        bottomBarLayout = QGridLayout(frameBottomBar)
+        bottomBarLayout.setSpacing(5)
         btnMainMenu = QPushButtonRC2("Main Menu", "Assets/img/button.png")
-        self.btnAdministrator = QPushButtonRC2("Form.Administrator", "Assets/img/button.png")
-        self.btnEmployee = QPushButtonRC2("Form.Employee", "Assets/img/button.png")
-        self.btnReceptionist = QPushButtonRC2("Form.Receptionist", "Assets/img/button.png")
-        self.btnMarketing_crew = QPushButtonRC2("Form.Marketing Crew", "Assets/img/button.png")
-        self.btnCashier = QPushButtonRC2("Form.Cashier", "Assets/img/button.png")
-        self.btnVisitor = QPushButtonRC2("Form.Visitor", "Assets/img/button.png")
-        self.btnUser = QPushButtonRC2("Form.User", "Assets/img/button.png")
-        self.btnLogOut = QPushButtonRC2("Log Out", "Assets/img/button.png")
+        self.btnAdministrator = QPushButtonRC2("Form Admin", "")
+        self.btnEmployee = QPushButtonRC2("Form Employee", "")
+        self.btnReceptionist = QPushButtonRC2("Form Receptionist", "")
+        self.btnMarketing_crew = QPushButtonRC2("Form Marketing Crew", "")
+        self.btnCashier = QPushButtonRC2("Form Cashier", "")
+        self.btnVisitor = QPushButtonRC2("Form Visitor", "")
+        self.btnUser = QPushButtonRC2("Form User", "")
+        self.btnLogOut = QPushButtonRC2("Log Out", "")
 
         # >>>> EVENT SECTION <<<<
         self.btnLogOut.clicked.connect(lambda: self.logOutSlot())
@@ -89,14 +89,14 @@ class MainMenu(QWidget):
         lbllogo.setAlignment(QtCore.Qt.AlignRight)
 
         # >>>> LAYOUT SECTION <<<<
-        sideBarLayout.addWidget(btnMainMenu, 0, 0)
-        sideBarLayout.addWidget(self.btnAdministrator, 1, 0)
-        sideBarLayout.addWidget(self.btnEmployee, 2, 0)
-        sideBarLayout.addWidget(self.btnReceptionist, 3, 0)
-        sideBarLayout.addWidget(self.btnMarketing_crew, 4, 0)
-        sideBarLayout.addWidget(self.btnCashier, 5, 0)
-        sideBarLayout.addWidget(self.btnVisitor, 5, 0)
-        sideBarLayout.addWidget(self.btnLogOut, 6, 0, QtCore.Qt.AlignBottom)
+        bottomBarLayout.addWidget(btnMainMenu, 0, 0)
+        bottomBarLayout.addWidget(self.btnAdministrator, 0, 1)
+        bottomBarLayout.addWidget(self.btnEmployee, 0, 2)
+        bottomBarLayout.addWidget(self.btnReceptionist, 0, 3)
+        bottomBarLayout.addWidget(self.btnMarketing_crew, 0, 4)
+        bottomBarLayout.addWidget(self.btnCashier, 0, 5)
+        bottomBarLayout.addWidget(self.btnVisitor, 0, 6)
+        bottomBarLayout.addWidget(self.btnLogOut, 0, 7, QtCore.Qt.AlignBottom)
 
         headerLayout.addWidget(self.authority, 0, 0, QtCore.Qt.AlignLeft)
         headerLayout.addWidget(profile, 0, 2, QtCore.Qt.AlignRight)
@@ -111,9 +111,9 @@ class MainMenu(QWidget):
         frameLayoutRight.addWidget(lbllogo)
 
         layoutUtama = QGridLayout()
-        layoutUtama.addWidget(frameSideBar, 0, 0, 6, 1, QtCore.Qt.AlignLeft)
         layoutUtama.addWidget(frameTitle, 0, 1, 1, 9, QtCore.Qt.AlignTop)
         layoutUtama.addWidget(frameDashboard, 1, 1, 5, 9, QtCore.Qt.AlignTop)
+        layoutUtama.addWidget(frameBottomBar, 6, 1, 10, 9, QtCore.Qt.AlignTop)
         layoutUtama.setSpacing(10)
         self.setLayout(layoutUtama)
 
@@ -126,49 +126,49 @@ class MainMenu(QWidget):
 
     @pyqtSlot()
     def adminSlot(self):
-        from GUI.administratorGUI import AdministratorView
-        self.adminview = AdministratorView()
-        self.adminview.show()
-        self.adminview.exec_()
+        from GUI.administratorGUI import AdminView
+        self.AdminView = AdminView()
+        self.AdminView.show()
+        self.close()
 
     @pyqtSlot()
     def empSlot(self):
-        from GUI.employeeGUI import EmployeeView
+        from GUI.EmployeeGUI import EmployeeView
         self.employeeView = EmployeeView()
         self.employeeView.show()
-        self.employeeView.exec_()
+        self.close()
 
     @pyqtSlot()
     def recSlot(self):
         from GUI.receptionistGUI import ReceptionistView
         self.receptionistView = ReceptionistView()
         self.receptionistView.show()
-        self.receptionistView.exec_()
+        self.close()
 
     @pyqtSlot()
     def mcSlot(self):
         from GUI.marketingcrewGUI import Marketing_crewView
         self.mcView = Marketing_crewView()
         self.mcView.show()
-        self.mcView.exec_()
+        self.close()
 
     @pyqtSlot()
     def userSlot(self):
         from View.UserView import UserView
         self.userView = UserView()
         self.userView.show()
-        self.userView.exec_()
+        self.close()
 
     @pyqtSlot()
     def casSlot(self):
         from GUI.cashierGUI import CashierView
         self.casView = CashierView()
         self.casView.show()
-        self.casView.exec_()
+        self.close()
 
     @pyqtSlot()
     def visSlot(self):
         from GUI.visitorGUI import VisitorView
         self.visView = VisitorView()
         self.visView.show()
-        self.visView.exec_()
+        self.close()

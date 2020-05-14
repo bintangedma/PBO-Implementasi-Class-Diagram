@@ -9,9 +9,9 @@ class QLabelRC(QLabel):
         self.setWordWrap(True)
 
         font = QtGui.QFont()
-        font.setFamily("Product Sans")
-        font.setPointSize(14)
-        font.setBold(True)
+        font.setFamily("Arial")
+        font.setPointSize(18)
+        font.setBold(False)
         font.setWeight(75)
 
         self.setFont(font)

@@ -8,12 +8,13 @@ class EditLineRC(QLineEdit):
         super().__init__()
         self.setStyleSheet("border : 0;\n"
                            "outline : 0;\n"
-                           "background : transparent;\n"
+                           "background : white;\n"
+                           "border-top : 2px solid rgb(125, 15, 15);\n"
                            "border-bottom : 2px solid rgb(125, 15, 15);")
         self.setPlaceholderText(placeholder)
         font = QtGui.QFont()
-        font.setFamily("Product Sans")
-        font.setPointSize(12)
+        font.setFamily("Constantia")
+        font.setPointSize(14)
         font.setWeight(55)
 
         self.setFont(font)

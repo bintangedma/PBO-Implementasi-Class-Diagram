@@ -8,9 +8,12 @@ class AdministratorOrm(Base):
     nama_admin = Column(String, unique=True)
     kode_admin = Column(String)
 
-    def __init__(self, nama_admin, kode_admin):
+    jumlahAdmin = 1
+    def __init__(self,id_admin, nama_admin, kode_admin):
+        self.id_admin = str("ADM000")+str(AdministratorOrm.jumlahAdmin)
         self.nama_admin = nama_admin
         self.kode_admin = kode_admin
+        AdministratorOrm.jumlahAdmin += 1
 
     @staticmethod
     def showAdmin():
@@ -27,7 +30,7 @@ class AdministratorOrm(Base):
     def insertAdmin(self):
         try:
             session = sessionFactory()
-            adminOrm = AdministratorOrm(self.__nama_admin, self.__kode_admin)
+            adminOrm = AdministratorOrm(self.id_admin, self.nama_admin, self.kode_admin)
             session.add(adminOrm)
             session.commit()
             session.close()

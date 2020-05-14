@@ -4,7 +4,7 @@ from PyQt5.QtWidgets import QDialog, QGridLayout, QMessageBox, QApplication
 import sys
 
 from Class.Authority import Authority
-#from Class.JenKel import JenKel
+from Class.JenKel import JenKel
 #from Class.Employee import Employee
 from db.Orm.EmployeeOrm import EmployeeOrm
 from GUI.ReusableComponent.EditLineRC import EditLineRC
@@ -41,32 +41,31 @@ class EmployeeView(QDialog):
         lblauthority.setFont(self.font)
         self.cmbauthority = QComboBoxRC()
         self.cmbauthority.addItems(
-            ['Receptonist', 'Marketing Crew', 'Cashier'])
-        self.pilAuthority = [Authority.Receptionist,
+            ['Employee', 'Receptonist', 'Marketing Crew', 'Cashier'])
+        self.pilAuthority = [Authority.Employee, Authority.Receptionist,
                              Authority.Marketing_crew, Authority.Cashier]
 
-        lbljeniskelamin = QLabelRC("\nJenis Kelamin\n", "black")
+        lbljeniskelamin = QLabelRC("\nJenis Kelamin\n", "grey")
         lbljeniskelamin.setFont(self.font)
         self.cmbjeniskelamin = QComboBoxRC()
         self.cmbjeniskelamin.addItems(
             ['Laki-laki', 'Perempuan'])
-        #self.pilJenKel = [JenKel.Laki-laki,
-        #                     JenKel.Perempuan]
+        self.pilJenKel = [JenKel.Lakilaki, JenKel.Perempuan]
 
         lblnama = QLabelRC("\nNama\n", "black")
         lblnama.setFont(self.font)
         self.txtnama = EditLineRC("Input Nama")
 
-        lblid = QLabelRC("\n\nId\n", "black")
-        lblid.setFont(self.font)
-        self.txtid = EditLineRC("Input Id")
+        lblTL = QLabelRC("\n\nTanggal Lahir\n", "grey")
+        lblTL.setFont(self.font)
+        self.txtTL = EditLineRC("")
 
         lblalamat = QLabelRC("\n\nAlamat\n", "black")
         lblalamat.setFont(self.font)
         self.txtalamat = EditLineRC("Input Alamat")
 
         # >>> ADD DATA <<<
-        self.btnTambah = QPushButtonRC2("", "Assets/img/button.png")
+        self.btnTambah = QPushButtonRC2("Tambah Data", "Assets/img/button.png")
         self.btnTambah.setStyleSheet("background-color : rgb(125, 15, 15);\n"
                                      "border : none;\n"
                                      "border-radius : 25px;\n"
@@ -84,8 +83,8 @@ class EmployeeView(QDialog):
         layout1.addWidget(lbljudul, 0, 0, 1, 3, Qt.AlignLeft)
         layout1.addWidget(lblnama, 1, 0, 1, 3, Qt.AlignLeft)
         layout1.addWidget(self.txtnama, 2, 0, 2, 3)
-        layout1.addWidget(lblid, 4, 0, 1, 3, Qt.AlignLeft)
-        layout1.addWidget(self.txtid, 5, 0, 2, 3)
+        layout1.addWidget(lblTL, 4, 0, 1, 3, Qt.AlignLeft)
+        layout1.addWidget(self.txtTL, 5, 0, 2, 3)
         layout1.addWidget(lblalamat, 7, 0, 1, 3, Qt.AlignLeft)
         layout1.addWidget(self.txtalamat, 8, 0, 2, 3)
         layout1.addWidget(lblauthority, 1, 5, 1, 3)
@@ -98,13 +97,15 @@ class EmployeeView(QDialog):
 
     @pyqtSlot()
     def insertData(self):
-        self.nama = self.txtnama.text()
-        self.id = self.txtid.text()
-        self.authority = self.pilAuthority[self.cmbauthority.currentIndex()]
-        self.jeniskelamin = self.pilJeniskelamin[self.cmbjeniskelamin.currentIndex()]
-        nama = Nama(self.nama, self.id, self.authority, self.jeniskelamin)
+        self.id_emp = self.txtnama.text()+self.txtTL.text()
+        self.nama_emp = self.txtnama.text()
+        self.TL_emp = self.txtTL.text()
+        self.jabatan_emp = self.pilAuthority[self.cmbauthority.currentIndex()]
+        self.JK_emp = self.pilJeniskelamin[self.cmbjeniskelamin.currentIndex()]
+        self.alamat_emp = self.txtalamat.text()
+        employee = Nama(self.id_emp, self.nama_emp, self.TL_emp, self.jabatan_emp, self.JK_emp, self.alamat_emp)
         try:
-            EmployeeOrm.insertEmployee(Employee)
+            EmployeeOrm.insertEmployee(employee)
         except Exception as e:
             msg = QMessageBox()
             msg.resize(250, 250)
