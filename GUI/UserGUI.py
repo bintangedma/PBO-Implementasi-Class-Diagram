@@ -20,16 +20,16 @@ class UserView(QDialog):
         self.setModal(True)
         self.resize(550, 350)
 
-        # ======== FONT CONFIGURE ======
+        # >>> FONT CONFIGURE <<<
         self.font = QtGui.QFont()
         self.font.setFamily("Product Sans")
         self.font.setPointSize(12)
         self.font.setWeight(55)
 
-        # ======== BASE SECTION ========
+        # >>> BASE SECTION <<<
         self.layoutUtama = QGridLayout()
 
-        # ======== FIRST LAYOUT =======
+        # >>> FIRST LAYOUT <<<
         framelayout1 = QFrameRC("white")
         framelayout1.setContentsMargins(25, 25, 25, 25)
         layout1 = QGridLayout(framelayout1)
@@ -52,7 +52,7 @@ class UserView(QDialog):
         lblpassword.setFont(self.font)
         self.txtpassword = EditLineRC("")
 
-        # ======== ADD DATA ===========
+        # >>> ADD DATA <<<
         self.btnTambah = QPushButtonRC2("", "Assets/img/button.png")
         self.btnTambah.setStyleSheet("background-color : rgb(125, 15, 15);\n"
                                      "border : none;\n"
@@ -61,10 +61,10 @@ class UserView(QDialog):
                                      "color : white;\n")
         self.btnTambah.setIconSize(QtCore.QSize(75, 54))
 
-        # ========== EVENT SECTION =========
+        # >>> EVENT SECTION <<<
         self.btnTambah.clicked.connect(lambda: self.insertData())
 
-        # ======== LAYOUT SECTION ======
+        # >>> LAYOUT SECTION <<<
         self.layoutUtama.addWidget(framelayout1, 0, 0, 1, 9, Qt.AlignVCenter)
         self.layoutUtama.addWidget(self.btnTambah, 5, 0, 1, 9, Qt.AlignBottom | Qt.AlignRight)
 
@@ -110,6 +110,6 @@ class UserView(QDialog):
         self.txtusername.setFocus()
 
 app = QApplication(sys.argv)
-wandi = UserView()
-wandi.show()
+userview = UserView()
+userview.show()
 sys.exit(app.exec_())
