@@ -12,7 +12,7 @@ class QComboBoxRC(QComboBox):
                            "border-bottom : 2px solid rgb(125, 15, 15);")
         font = QtGui.QFont()
         font.setFamily("Product Sans")
-        font.setPointSize(14)
+        font.setPointSize(12)
         font.setBold(True)
         font.setWeight(75)
 
