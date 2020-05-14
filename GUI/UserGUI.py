@@ -110,12 +110,6 @@ class UserView(QDialog):
         self.txtusername.setFocus()
 
 app = QApplication(sys.argv)
-<<<<<<< HEAD
-userview = UserView()
-userview.show()
+bintang = UserView()
+bintang.show()
 sys.exit(app.exec_())
-=======
-wandi = UserView()
-wandi.show()
-sys.exit(app.exec_())
->>>>>>> commit
