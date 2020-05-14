@@ -19,6 +19,7 @@ class EmployeeOrm(Base):
         self.jabatan_emp = jabatan_emp
         self.JK_emp = JK_emp
         self.alamat_emp = alamat_emp
+        EmployeeOrm.jumlahEmp+=1
 
     @staticmethod
     def showEmployee():

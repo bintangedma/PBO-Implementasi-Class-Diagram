@@ -50,7 +50,7 @@ class EmployeeView(QDialog):
         self.cmbjeniskelamin = QComboBoxRC()
         self.cmbjeniskelamin.addItems(
             ['Laki-laki', 'Perempuan'])
-        self.pilJenKel = [JenKel.Lakilaki, JenKel.Perempuan]
+        self.pilJenisKelamin = [JenKel.Lakilaki, JenKel.Perempuan]
 
         lblnama = QLabelRC("\nNama\n", "black")
         lblnama.setFont(self.font)
@@ -101,9 +101,9 @@ class EmployeeView(QDialog):
         self.nama_emp = self.txtnama.text()
         self.TL_emp = self.txtTL.text()
         self.jabatan_emp = self.pilAuthority[self.cmbauthority.currentIndex()]
-        self.JK_emp = self.pilJeniskelamin[self.cmbjeniskelamin.currentIndex()]
+        self.JK_emp = self.pilJenisKelamin[self.cmbjeniskelamin.currentIndex()]
         self.alamat_emp = self.txtalamat.text()
-    employee = EmployeeOrm(self.id_emp, self.nama_emp, self.TL_emp, self.jabatan_emp, self.JK_emp, self.alamat_emp)
+        employee = EmployeeOrm(self.id_emp, self.nama_emp, self.TL_emp, self.jabatan_emp, self.JK_emp, self.alamat_emp)
         try:
             EmployeeOrm.insertEmployee(employee)
         except Exception as e:
@@ -129,7 +129,7 @@ class EmployeeView(QDialog):
         self.cmbjeniskelamin.setCurrentIndex(0)
         self.txtname.setFocus()
 
-app = QApplication(sys.argv)
-emp = EmployeeView()
-emp.show()
-sys.exit(app.exec_())
+#app = QApplication(sys.argv)
+#emp = EmployeeView()
+#emp.show()
+#sys.exit(app.exec_())
