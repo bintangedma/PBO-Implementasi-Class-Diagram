@@ -58,7 +58,7 @@ class EmployeeView(QDialog):
 
         lblTL = QLabelRC("\n\nTanggal Lahir\n", "black")
         lblTL.setFont(self.font)
-        self.txtTL = EditLineRC("00-00-0000")
+        self.txtTL = EditLineRC("")
 
         lblalamat = QLabelRC("\n\nAlamat\n", "black")
         lblalamat.setFont(self.font)
