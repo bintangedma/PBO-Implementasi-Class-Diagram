@@ -4,14 +4,18 @@ from db.base import Base, sessionFactory
 class VisitorOrm(Base) :
     __tablename__ = 'Visitor'
 
-    id_visitor = Column(Integer, primary_key=True)
+    id_visitor = Column(String, primary_key=True)
     nama = Column(String)
+    jk = Column(String)
     alamat = Column(String)
-    no_KTP = Column(String)
+    no_KTP = Column(String, unique=True)
     tanggal_lahir = Column(String)
 
-    def __init__(self, nama, alamat, no_KTP, tanggal_lahir):
+    jumlahVis = 0
+    def __init__(self, id_visitor, nama, jk, alamat, no_KTP, tanggal_lahir):
+        self.id_visitor = str("VIS00")+str(VisitorOrm.jumlahVis)
         self.nama = nama
+        self.jk = jk
         self.alamat = alamat
         self.no_KTP = no_KTP
         self.tanggal_lahir = tanggal_lahir
@@ -32,7 +36,7 @@ class VisitorOrm(Base) :
     def insertVisitor(self):
         try:
             session = sessionFactory()
-            visitorOrm = VisitorOrm(self.__nama, self.__alamat, self.__no_KTP, self.__tanggal_lahir)
+            visitorOrm = VisitorOrm(self.id_visitor,self.nama ,self.jk , self.alamat, self.no_KTP, self.tanggal_lahir)
             session.add(visitorOrm)
             session.commit()
             session.close()

@@ -26,14 +26,14 @@ class MainMenu(QWidget):
 
         bottomBarLayout = QGridLayout(frameBottomBar)
         bottomBarLayout.setSpacing(5)
-        btnMainMenu = QPushButtonRC2("Main Menu", "Assets/img/button.png")
-        self.btnAdministrator = QPushButtonRC2("Form Admin", "")
-        self.btnEmployee = QPushButtonRC2("Form Employee", "")
-        self.btnReceptionist = QPushButtonRC2("Form Receptionist", "")
-        self.btnMarketing_crew = QPushButtonRC2("Form Marketing Crew", "")
-        self.btnCashier = QPushButtonRC2("Form Cashier", "")
-        self.btnVisitor = QPushButtonRC2("Form Visitor", "")
-        self.btnUser = QPushButtonRC2("Form User", "")
+        btnMainMenu = QPushButtonRC2("Tambah Data : ", "")
+        self.btnAdministrator = QPushButtonRC2("Administrator", "")
+        self.btnEmployee = QPushButtonRC2("Employee", "")
+        self.btnReceptionist = QPushButtonRC2("Receptionist", "")
+        self.btnMarketing_crew = QPushButtonRC2("Marketing Crew", "")
+        self.btnCashier = QPushButtonRC2("Cashier", "")
+        self.btnVisitor = QPushButtonRC2("Visitor", "")
+        self.btnUser = QPushButtonRC2("User", "")
         self.btnLogOut = QPushButtonRC2("Log Out", "")
 
         # >>>> EVENT SECTION <<<<
@@ -66,7 +66,7 @@ class MainMenu(QWidget):
         font.setFamily("Arial Rounded")
         font.setPointSize(11)
         font.setWeight(50)
-        welcome = QLabelRC("Welcome", "white")
+        welcome = QLabelRC("Selamat datang,", "white")
         welcome.setFont(font)
 
         font = QtGui.QFont()
@@ -129,46 +129,41 @@ class MainMenu(QWidget):
         from GUI.administratorGUI import AdminView
         self.AdminView = AdminView()
         self.AdminView.show()
-        self.close()
+
 
     @pyqtSlot()
     def empSlot(self):
         from GUI.EmployeeGUI import EmployeeView
         self.EmployeeView = EmployeeView()
         self.EmployeeView.show()
-        self.close()
+
 
     @pyqtSlot()
     def recSlot(self):
-        from GUI.receptionistGUI import ReceptionistView
-        self.receptionistView = ReceptionistView()
-        self.receptionistView.show()
-        self.close()
+        from GUI.ReceptionistGUI import ReceptionistView
+        self.ReceptionistView = ReceptionistView()
+        self.ReceptionistView.show()
 
     @pyqtSlot()
     def mcSlot(self):
-        from GUI.marketingcrewGUI import Marketing_crewView
+        from GUI.Marketing_crewGUI import Marketing_crewView
         self.mcView = Marketing_crewView()
         self.mcView.show()
-        self.close()
 
     @pyqtSlot()
     def userSlot(self):
         from View.UserView import UserView
         self.userView = UserView()
         self.userView.show()
-        self.close()
 
     @pyqtSlot()
     def casSlot(self):
-        from GUI.cashierGUI import CashierView
+        from GUI.CashierGUI import CashierView
         self.casView = CashierView()
         self.casView.show()
-        self.close()
 
     @pyqtSlot()
     def visSlot(self):
-        from GUI.visitorGUI import VisitorView
+        from GUI.VisitorGUI import VisitorView
         self.visView = VisitorView()
         self.visView.show()
-        self.close()

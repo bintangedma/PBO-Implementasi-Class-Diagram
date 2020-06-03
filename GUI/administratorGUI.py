@@ -53,12 +53,22 @@ class AdminView(QDialog):
                                      "color : white;\n")
         self.btnTambah.setIconSize(QtCore.QSize(60, 35))
 
+        self.btnMainMenu = QPushButtonRC2("Main Menu", "Assets/img/back.png")
+        self.btnMainMenu.setStyleSheet("background-color : rgb(125, 15, 15);\n"
+                                     "border : none;\n"
+                                     "border-radius : 25px;\n"
+                                     "height : 50%;\n"
+                                     "color : white;\n")
+        self.btnMainMenu.setIconSize(QtCore.QSize(60, 35))
+
         # >>>> EVENT SECTION <<<<
         self.btnTambah.clicked.connect(lambda: self.insertData())
+        self.btnMainMenu.clicked.connect(lambda: self.switchMainMenu())
 
         # >>>> LAYOUT SECTION <<<<
         self.layoutUtama.addWidget(framelayout1, 0, 0, 1, 9, Qt.AlignVCenter)
         self.layoutUtama.addWidget(self.btnTambah, 5, 0, 1, 9, Qt.AlignBottom | Qt.AlignRight)
+        self.layoutUtama.addWidget(self.btnMainMenu, 5, 0, 1, 9, Qt.AlignBottom | Qt.AlignLeft)
 
         layout1.addWidget(lbljudul, 0, 0, 1, 3, Qt.AlignLeft)
         layout1.addWidget(lblnama, 1, 0, 1, 3, Qt.AlignLeft)
@@ -92,6 +102,10 @@ class AdminView(QDialog):
             msg.setWindowTitle("BERHASIL")
             msg.exec_()
             self.clear()
+
+    def switchMainMenu(self):
+        self.close()
+
 
     def clear(self):
         self.txtnama.setText("")

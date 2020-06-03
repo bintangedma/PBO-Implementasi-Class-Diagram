@@ -49,6 +49,9 @@ class LoginView(QWidget):
         self.btnLogin = QPushButtonRC("Login")
         self.btnLogin.clicked.connect(lambda: self.buttonClick())
 
+        self.btnUser = QPushButtonRC("Tambah User")
+        self.btnUser.clicked.connect(lambda: self.buttonClick2())
+
         # >>>> LAYOUT SECTION <<<<
         layout1 = QVBoxLayout()
         layout1.addWidget(lbllogo)
@@ -64,6 +67,7 @@ class LoginView(QWidget):
         layout2.addWidget(lblpassword)
         layout2.addWidget(self.txtpassword)
         layout2.addWidget(self.btnLogin)
+        layout2.addWidget(self.btnUser)
 
         layoutUtama = QHBoxLayout()
         layoutUtama.addLayout(layout1)
@@ -86,6 +90,12 @@ class LoginView(QWidget):
             msg.setText("Username/Password tidak cocok!")
             msg.setWindowTitle("GAGAL")
             msg.exec_()
+
+    def buttonClick2(self):
+        from GUI.UserGUI import UserView
+        self.userView = UserView()
+        self.userView.show()
+        self.exec_()
 
     @pyqtSlot()
     def switchMainMenu(self):
