@@ -45,7 +45,7 @@ class EmployeeView(QDialog):
         self.pilAuthority = [Authority.Employee, Authority.Receptionist,
                              Authority.Marketing_crew, Authority.Cashier]
 
-        lbljeniskelamin = QLabelRC("\nJenis Kelamin\n", "grey")
+        lbljeniskelamin = QLabelRC("\nJenis Kelamin\n", "black")
         lbljeniskelamin.setFont(self.font)
         self.cmbjeniskelamin = QComboBoxRC()
         self.cmbjeniskelamin.addItems(
@@ -56,7 +56,7 @@ class EmployeeView(QDialog):
         lblnama.setFont(self.font)
         self.txtnama = EditLineRC("Input Nama")
 
-        lblTL = QLabelRC("\n\nTanggal Lahir\n", "grey")
+        lblTL = QLabelRC("\n\nTanggal Lahir\n", "black")
         lblTL.setFont(self.font)
         self.txtTL = EditLineRC("")
 
