@@ -220,6 +220,8 @@ class MainMenu(QWidget):
             self.btnMarketing_crew.setVisible(False)
             self.btnCashier.setVisible(False)
             self.btnVisitor.setVisible(False)
+            self.btnCheckIn.setVisible(False)
+            self.btnRoom.setVisible(False)
         elif (authority == str(Authority.Receptionist)):
             self.btnAdministrator.setVisible(False)
             self.btnEmployee.setVisible(False)
@@ -232,12 +234,16 @@ class MainMenu(QWidget):
             self.btnReceptionist.setVisible(False)
             self.btnCashier.setVisible(False)
             self.btnVisitor.setVisible(False)
+            self.btnCheckIn.setVisible(False)
+            self.btnRoom.setVisible(False)
         elif (authority == str(Authority.Cashier)):
             self.btnAdministrator.setVisible(False)
             self.btnEmployee.setVisible(False)
             self.btnReceptionist.setVisible(False)
             self.btnMarketing_crew.setVisible(False)
             self.btnVisitor.setVisible(False)
+            self.btnCheckIn.setVisible(False)
+            self.btnRoom.setVisible(False)
         elif (authority == str(Authority.Visitor)):
             self.btnAdministrator.setVisible(False)
             self.btnEmployee.setVisible(False)
