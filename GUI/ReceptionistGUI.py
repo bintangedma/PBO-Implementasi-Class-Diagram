@@ -5,6 +5,7 @@ import sys
 
 from Class.Authority import Authority
 from Class.JenKel import JenKel
+from Class.Emptype import Emptype
 #from Class.Employee import Employee
 from db.Orm.EmployeeOrm import EmployeeOrm
 from GUI.ReusableComponent.EditLineRC import EditLineRC
@@ -41,9 +42,8 @@ class ReceptionistView(QDialog):
         lblauthority.setFont(self.font)
         self.cmbauthority = QComboBoxRC()
         self.cmbauthority.addItems(
-            ['Employee', 'Receptonist', 'Marketing Crew', 'Cashier'])
-        self.pilAuthority = [Authority.Employee, Authority.Receptionist,
-                             Authority.Marketing_crew, Authority.Cashier]
+            ['Receptonist'])
+        self.pilAuthority = [Emptype.Receptionist]
 
         lbljeniskelamin = QLabelRC("\nJenis Kelamin\n", "grey")
         lbljeniskelamin.setFont(self.font)
@@ -136,11 +136,12 @@ class ReceptionistView(QDialog):
         self.close()
 
     def clear(self):
-        self.txtname.setText("")
-        self.txtid.setText("")
+        self.txtnama.setText("")
+        self.txtTL.setText("")
+        self.txtalamat.setText("")
         self.cmbauthority.setCurrentIndex(0)
         self.cmbjeniskelamin.setCurrentIndex(0)
-        self.txtname.setFocus()
+        self.txtnama.setFocus()
 
 #app = QApplication(sys.argv)
 #emp = EmployeeView()

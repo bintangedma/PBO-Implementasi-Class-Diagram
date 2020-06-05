@@ -10,7 +10,8 @@ class AdministratorOrm(Base):
 
     jumlahAdmin = 0
     def __init__(self,id_admin, nama_admin, kode_admin):
-        self.id_admin = str("ADM000")+str(AdministratorOrm.jumlahAdmin)
+        #self.id_admin = str("ADM000")+str(AdministratorOrm.jumlahAdmin)
+        self.id_admin = str("ADM000") + nama_admin
         self.nama_admin = nama_admin
         self.kode_admin = kode_admin
         AdministratorOrm.jumlahAdmin +=1

@@ -95,7 +95,7 @@ class LoginView(QWidget):
         from GUI.UserGUI import UserView
         self.userView = UserView()
         self.userView.show()
-        self.exec_()
+        self.hide()
 
     @pyqtSlot()
     def switchMainMenu(self):

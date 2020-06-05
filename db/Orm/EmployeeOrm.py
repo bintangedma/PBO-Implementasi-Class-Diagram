@@ -1,19 +1,22 @@
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, Enum
 from db.base import Base, sessionFactory
+from Class.JenKel import JenKel
+from Class.Emptype import Emptype
 
 class EmployeeOrm(Base):
     __tablename__ = 'Employee'
 
     id_emp = Column(String, primary_key=True)
-    nama_emp = Column(String)
+    nama_emp = Column(String, unique=True)
     TL_emp = Column(String)
-    jabatan_emp = Column(String)
-    JK_emp = Column(String)
+    jabatan_emp = Column(Enum(Emptype))
+    JK_emp = Column(Enum(JenKel))
     alamat_emp = Column(String)
 
-    jumlahEmp = 1
-    def __init__(self,id_emp, nama_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
-        self.id_emp = str("EMP00") + str(EmployeeOrm.jumlahEmp)
+    jumlahEmp = 0
+    def __init__(self, id_emp, nama_emp, TL_emp, jabatan_emp, JK_emp, alamat_emp):
+        #self.id_emp = str("EMP00") + str(EmployeeOrm.jumlahEmp)
+        self.id_emp = str("EMP00") + nama_emp + TL_emp
         self.nama_emp = nama_emp
         self.TL_emp = TL_emp
         self.jabatan_emp = jabatan_emp

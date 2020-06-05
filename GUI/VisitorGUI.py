@@ -103,7 +103,7 @@ class VisitorView(QDialog):
 
     @pyqtSlot()
     def insertData(self):
-        self.id_visitor = self.txtnama.text()+self.txtTL.text()
+        self.id_visitor = self.txtnama.text()
         self.nama = self.txtnama.text()
         self.jk = self.pilJenisKelamin[self.cmbjeniskelamin.currentIndex()]
         self.alamat = self.txtalamat.text()
@@ -132,11 +132,12 @@ class VisitorView(QDialog):
         self.close()
 
     def clear(self):
-        self.txtname.setText("")
-        self.txtid.setText("")
-        self.cmbauthority.setCurrentIndex(0)
+        self.txtnama.setText("")
+        self.txtTL.setText("")
+        self.txtalamat.setText("")
+        self.txtnoKtp.setText("")
         self.cmbjeniskelamin.setCurrentIndex(0)
-        self.txtname.setFocus()
+        self.txtnama.setFocus()
 
 #app = QApplication(sys.argv)
 #emp = VisitorView()

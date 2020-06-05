@@ -127,7 +127,7 @@ class UserView(QDialog):
         self.cmbauthority.setCurrentIndex(0)
         self.txtusername.setFocus()
 
-app = QApplication(sys.argv)
-bintang = UserView()
-bintang.show()
-sys.exit(app.exec_())
+#app = QApplication(sys.argv)
+#bintang = UserView()
+#bintang.show()
+#sys.exit(app.exec_())
