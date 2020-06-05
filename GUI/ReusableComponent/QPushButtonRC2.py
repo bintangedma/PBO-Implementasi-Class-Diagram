@@ -6,7 +6,7 @@ class QPushButtonRC2(QPushButton):
 
     def __init__(self, text, iconPath):
         super().__init__()
-        self.setStyleSheet("background-color : rgb(58, 172, 248);\n"
+        self.setStyleSheet("background-color :  rgb(0, 85, 255);\n"
                            "border : none;\n"
                            "border-radius : 10px;\n"
                            "height : 50%;\n"

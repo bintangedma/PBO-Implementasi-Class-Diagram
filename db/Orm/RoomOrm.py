@@ -1,22 +1,28 @@
-from sqlalchemy import Column, String
+from sqlalchemy import Column, String, Enum
 from Class.Room import Room
+from Class.RoomCode import RoomCode
+from Class.RoomNumber import RoomNumber
 from db.base import Base, sessionFactory
 
-class RoomORM(Base):
-    __tablename__ = 'room'
+class RoomOrm(Base):
+    __tablename__ = 'Room'
 
-    room_number = Column(String, primary_key=True)
-    room_code = Column(String)
+    id = Column(String, primary_key=True, unique=True)
+    room_number = Column(Enum(RoomNumber))
+    room_code = Column(Enum(RoomCode))
+    status = Column(String)
 
-    def __init__(self, room_number, room_code):
+    def __init__(self, id, room_number, room_code, status):
+        self.id = room_code + room_number
         self.room_number = room_number
         self.room_code = room_code
+        self.status = str("Occupied")
 
     @staticmethod
-    def showroom():
+    def showRoom():
         try:
             session = sessionFactory()
-            for room in session.query(RoomORM).all():
+            for room in session.query(RoomOrm).all():
                 print(
                     "Room Number = {}\nRoom Code = {}\n--------------------"
                         .format(room.room_number, room.room_code))
@@ -24,11 +30,10 @@ class RoomORM(Base):
         except Exception as e:
             print("--->", e)
 
-    @staticmethod
-    def insertvisitor(room):
+    def insertRoom(self):
         try:
             session = sessionFactory()
-            roomORM = RoomORM(room.room_number, room.room_code)
+            roomORM = RoomOrm(self.id, self.room_number, self.room_code, self.status)
             session.add(roomORM)
             session.commit()
             session.close()
@@ -38,10 +43,10 @@ class RoomORM(Base):
             print("Data Berhasil Di Simpan")
 
     @staticmethod
-    def roomstatus(room_number) -> bool:
+    def roomStatus(room_number) -> bool:
         try:
             session = sessionFactory()
-            if((session.query(RoomORM).filter_by(room_number=room_number).count()) == 1):
+            if((session.query(RoomOrm).filter_by(room_number=room_number).count()) == 1):
                 return True
             else:
                 return False
